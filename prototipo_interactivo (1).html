@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prototipo interactivo — Asistente IA Comercial y Académico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#161B2E; --navy-2:#232B47; --paper:#F2F3F5; --white:#ffffff;
+    --teal:#14B8A6; --teal-dk:#0E8E80; --coral:#FF6B6B; --line:#E1E3E8;
+    --ink:#1B2540; --muted:#6B7280; --wa:#0B7A5A; --wa-bg:#E9F5EF;
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--paper); font-family:'Inter', sans-serif; color:var(--ink); }
+  .topbar{ background:var(--navy); color:#fff; padding:18px 28px 14px; display:flex; justify-content:space-between; align-items:flex-end; gap:16px; flex-wrap:wrap;}
+  .topbar h1{ font-family:'Space Grotesk', sans-serif; font-size:19px; font-weight:700; margin:0 0 2px; letter-spacing:-0.01em;}
+  .topbar p{ margin:0; font-size:12px; color:#AEB4C9; }
+  .topbar .disclaimer{ font-size:10.5px; color:#7C84A3; max-width:320px; line-height:1.4; }
+  nav{ display:flex; flex-wrap:wrap; gap:6px; background:var(--navy); padding:0 22px 16px; }
+  nav button{ font-family:'Inter',sans-serif; font-size:12.5px; font-weight:600; color:#C9CEDE; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); padding:8px 14px; border-radius:20px; cursor:pointer; transition:all .15s ease;}
+  nav button:hover{ background:rgba(255,255,255,0.14); color:#fff; }
+  nav button.active{ background:var(--teal); border-color:var(--teal); color:#04211D; }
+  main{ padding:34px 20px 70px; display:flex; justify-content:center; }
+  .screen{ display:none; width:100%; max-width:960px; } .screen.active{ display:block; }
+  .screen-label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;}
+  .reset-btn{ font-family:'Inter',sans-serif; text-transform:none; letter-spacing:0; background:#fff; border:1px solid var(--line); color:var(--muted); font-size:11.5px; font-weight:600; padding:5px 10px; border-radius:8px; cursor:pointer;}
+  .reset-btn:hover{ border-color:var(--coral); color:var(--coral); }
+
+  /* ---- browser frame ---- */
+  .browser{ background:var(--white); border-radius:12px; overflow:hidden; box-shadow:0 20px 45px rgba(22,27,46,0.16); border:1px solid var(--line); }
+  .browser-bar{ background:#EEF0F3; padding:10px 14px; display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--line); }
+  .dot{ width:9px; height:9px; border-radius:50%; }
+  .dot.r{background:#FF6B6B;} .dot.y{background:#FFC85C;} .dot.g{background:#5CD98A;}
+  .browser-url{ margin-left:10px; background:#fff; border:1px solid var(--line); border-radius:6px; padding:4px 10px; font-size:11.5px; color:var(--muted); font-family:'IBM Plex Mono', monospace; }
+  .site{ position:relative; height:560px; background: radial-gradient(circle at 15% 15%, #1E2A52 0%, transparent 45%), linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 100%); padding:30px; color:#fff; overflow:hidden; }
+  .site .brand{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:15px; }
+  .site .headline{ margin-top:60px; max-width:360px; }
+  .site .headline h2{ font-family:'Space Grotesk', sans-serif; font-size:26px; line-height:1.15; margin:0 0 10px; }
+  .site .headline p{ font-size:13px; color:#B9BFD6; line-height:1.5; }
+  .site .headline .courses-hint{ margin-top:16px; display:flex; gap:8px; flex-wrap:wrap; }
+  .site .headline .courses-hint span{ font-size:10.5px; font-family:'IBM Plex Mono',monospace; border:1px solid rgba(255,255,255,0.25); padding:4px 8px; border-radius:6px; color:#C9CEDE; }
+
+  .bubble{ position:absolute; right:26px; bottom:26px; width:58px; height:58px; border-radius:50%; background:var(--teal); display:flex; align-items:center; justify-content:center; box-shadow:0 10px 24px rgba(20,184,166,0.45); cursor:pointer; transition:transform .15s ease; z-index:5;}
+  .bubble:hover{ transform:scale(1.06); }
+  .bubble svg{ width:26px; height:26px; }
+  .bubble-hint{ position:absolute; right:94px; bottom:42px; background:#fff; color:var(--ink); font-size:12px; font-weight:600; padding:8px 12px; border-radius:10px 10px 2px 10px; box-shadow:0 8px 20px rgba(0,0,0,0.15); z-index:5; animation:float 2.4s ease-in-out infinite; cursor:pointer;}
+  @keyframes float{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-4px);} }
+
+  .chatwin{ position:absolute; right:26px; bottom:26px; width:330px; height:500px; background:#fff; border-radius:16px; box-shadow:0 20px 50px rgba(0,0,0,0.35); display:flex; flex-direction:column; overflow:hidden; color:var(--ink); z-index:6; transform-origin:bottom right; transition:transform .18s ease, opacity .18s ease; }
+  .chatwin.hidden{ transform:scale(0.85); opacity:0; pointer-events:none; }
+  .chat-head{ background:var(--navy); color:#fff; padding:14px 16px; display:flex; align-items:center; gap:10px; }
+  .chat-avatar{ width:30px; height:30px; border-radius:50%; background:var(--teal); display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:13px; color:#04211D; }
+  .chat-head .name{ font-size:13px; font-weight:700; font-family:'Space Grotesk', sans-serif;}
+  .chat-head .status{ font-size:10.5px; color:#9FE6DB; }
+  .chat-head .close-x{ margin-left:auto; cursor:pointer; opacity:.7; font-size:16px; padding:2px 6px; }
+  .chat-head .close-x:hover{ opacity:1; }
+  .chat-body{ flex:1; padding:14px; overflow-y:auto; background:#FAFBFC; display:flex; flex-direction:column; gap:10px; }
+
+  .chat-msg{ max-width:82%; font-size:12.5px; line-height:1.45; padding:9px 12px; border-radius:12px; animation:pop .15s ease; }
+  @keyframes pop{ from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);} }
+  .chat-body .chat-msg.bot{ background:#fff; border:1px solid var(--line); border-bottom-left-radius:2px; align-self:flex-start; }
+  .chat-body .chat-msg.user{ background:var(--teal); color:#04211D; font-weight:500; border-bottom-right-radius:2px; align-self:flex-end; }
+  .wa-body .chat-msg{ border-radius:8px; max-width:84%; }
+  .wa-body .chat-msg.bot{ background:#fff; border-bottom-left-radius:2px; align-self:flex-start; border:none; }
+  .wa-body .chat-msg.user{ background:#D9FDD3; color:var(--ink); border-bottom-right-radius:2px; align-self:flex-end; font-weight:400;}
+
+  .chat-msg .data{ font-family:'IBM Plex Mono', monospace; font-weight:600; color:var(--teal-dk); }
+  .wa-body .chat-msg .data{ color:#0B7A5A; }
+  .quick-replies{ display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+  .quick-replies span{ border:1px solid var(--teal); color:var(--teal-dk); font-size:11px; font-weight:600; padding:5px 10px; border-radius:14px; background:#EFFCFA; cursor:pointer; transition:.12s;}
+  .quick-replies span:hover{ background:var(--teal); color:#fff; }
+  .wa-body .quick-replies span{ border-color:var(--wa); color:var(--wa); background:#EFFAF3; }
+  .wa-body .quick-replies span:hover{ background:var(--wa); color:#fff; }
+
+  .lead-form{ margin-top:8px; display:flex; flex-direction:column; gap:6px; }
+  .lead-form input{ font-family:'Inter',sans-serif; font-size:11.5px; padding:7px 9px; border:1px solid var(--line); border-radius:8px; outline:none; }
+  .lead-form input:focus{ border-color:var(--teal); }
+  .lead-form button{ align-self:flex-start; background:var(--navy); color:#fff; border:none; font-size:11.5px; font-weight:600; padding:7px 12px; border-radius:8px; cursor:pointer; }
+  .lead-form button:hover{ background:#0d1120; }
+  .lead-form .err{ color:var(--coral); font-size:10.5px; display:none; }
+
+  .typing{ align-self:flex-start; background:#fff; border:1px solid var(--line); border-bottom-left-radius:2px; padding:10px 14px; border-radius:12px; display:flex; gap:4px; }
+  .wa-body .typing{ border:none; }
+  .typing span{ width:6px; height:6px; border-radius:50%; background:#B7BCC9; animation:blink 1.1s infinite; }
+  .typing span:nth-child(2){ animation-delay:.15s; } .typing span:nth-child(3){ animation-delay:.3s; }
+  @keyframes blink{ 0%,80%,100%{opacity:.25;} 40%{opacity:1;} }
+
+  .chat-input{ border-top:1px solid var(--line); padding:10px 12px; display:flex; gap:8px; align-items:center; }
+  .chat-input input{ flex:1; background:#F2F3F5; border-radius:16px; padding:9px 12px; font-size:12px; color:var(--ink); border:none; outline:none; font-family:'Inter',sans-serif;}
+  .chat-input input::placeholder{ color:var(--muted); }
+  .chat-input .send{ width:32px; height:32px; border-radius:50%; background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center; border:none; cursor:pointer; flex-shrink:0;}
+  .chat-input .send:hover{ background:#0d1120; }
+  .wa-inputbar{ background:#F0F0F0; padding:10px; display:flex; gap:8px; align-items:center; }
+  .wa-inputbar input{ flex:1; background:#fff; border-radius:20px; padding:8px 12px; font-size:12px; color:var(--ink); border:1px solid #e2e2e2; outline:none; font-family:'Inter',sans-serif;}
+  .wa-inputbar .send{ width:32px; height:32px; border-radius:50%; background:var(--wa); color:#fff; display:flex; align-items:center; justify-content:center; border:none; cursor:pointer; flex-shrink:0;}
+
+  .escalation-banner{ margin:0 14px 10px; background:#FFF1F1; border:1px solid #FFD3D3; color:#B33; font-size:11px; padding:8px 10px; border-radius:8px; font-weight:600; display:none; align-items:center; gap:6px; animation:pop .2s ease;}
+  .escalation-banner.show{ display:flex; }
+
+  /* WhatsApp frame */
+  .phone{ width:300px; margin:0 auto; background:#0B141A; border-radius:34px; padding:14px; box-shadow:0 20px 45px rgba(22,27,46,0.25); }
+  .phone-screen{ background:var(--wa-bg); border-radius:22px; overflow:hidden; height:580px; display:flex; flex-direction:column; }
+  .wa-head{ background:var(--wa); color:#fff; padding:14px 16px 12px; display:flex; align-items:center; gap:10px; }
+  .wa-head .name{ font-size:13.5px; font-weight:700; } .wa-head .status{ font-size:10.5px; color:#CDEBDE; }
+  .wa-avatar{ width:30px; height:30px; border-radius:50%; background:#fff; color:var(--wa); display:flex; align-items:center; justify-content:center; font-weight:700; font-family:'Space Grotesk', sans-serif; font-size:13px; }
+  .wa-body{ flex:1; padding:14px 10px; display:flex; flex-direction:column; gap:8px; overflow-y:auto; }
+
+  /* admin panel */
+  .adminwrap{ background:#fff; border-radius:12px; border:1px solid var(--line); box-shadow:0 12px 30px rgba(22,27,46,0.08); overflow:hidden; }
+  .adminbar{ background:var(--navy); color:#fff; padding:16px 22px; display:flex; justify-content:space-between; align-items:center; }
+  .adminbar .name{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:15px;}
+  .adminbody{ display:flex; min-height:480px; }
+  .side{ width:190px; background:#F7F8FA; border-right:1px solid var(--line); padding:18px 0; flex-shrink:0;}
+  .side a{ display:block; padding:10px 20px; font-size:12.5px; font-weight:600; color:var(--muted); cursor:pointer; }
+  .side a:hover{ color:var(--navy); }
+  .side a.on{ color:var(--navy); background:#fff; border-left:3px solid var(--teal); }
+  .content{ flex:1; padding:24px 26px; }
+  .content h3{ font-family:'Space Grotesk', sans-serif; margin:0 0 4px; font-size:18px;}
+  .content .desc{ font-size:12.5px; color:var(--muted); margin-bottom:18px; }
+  table{ width:100%; border-collapse:collapse; font-size:12.5px; }
+  th{ text-align:left; color:var(--muted); font-weight:600; padding:8px 10px; border-bottom:1px solid var(--line); font-size:11px; text-transform:uppercase; letter-spacing:0.04em;}
+  td{ padding:8px 10px; border-bottom:1px solid #F0F1F4; }
+  td.price{ font-family:'IBM Plex Mono', monospace; color:var(--teal-dk); font-weight:600;}
+  td[contenteditable="true"]{ cursor:text; border-radius:5px; }
+  td[contenteditable="true"]:hover{ background:#F7FCFB; outline:1px dashed var(--teal); outline-offset:-2px;}
+  td[contenteditable="true"]:focus{ background:#fff; outline:1.5px solid var(--teal); outline-offset:-2px;}
+  .badge{ font-size:10.5px; font-weight:700; padding:3px 9px; border-radius:10px; cursor:pointer; user-select:none; border:none; font-family:'Inter',sans-serif;}
+  .badge.on{ background:#E7F8F1; color:#0E8E80; } .badge.pend{ background:#FFF4E0; color:#B8790A; }
+  .row-del{ color:var(--coral); cursor:pointer; font-size:14px; padding:2px 6px; }
+  .add-row-btn{ margin-top:12px; background:#fff; border:1px dashed var(--teal); color:var(--teal-dk); font-size:12px; font-weight:600; padding:8px 14px; border-radius:8px; cursor:pointer; }
+  .add-row-btn:hover{ background:#EFFCFA; }
+  .live-note{ margin-top:16px; font-size:11.5px; color:var(--teal-dk); background:#EFFCFA; border:1px solid #CFF3EC; padding:8px 12px; border-radius:8px; }
+
+  .kpis{ display:flex; gap:14px; margin-bottom:22px; flex-wrap:wrap;}
+  .kpi{ flex:1; min-width:140px; background:#F7F8FA; border-radius:10px; padding:14px 16px; }
+  .kpi .num{ font-family:'Space Grotesk', sans-serif; font-size:26px; font-weight:700; color:var(--navy);}
+  .kpi .lab{ font-size:11px; color:var(--muted); }
+  .bars{ display:flex; align-items:flex-end; gap:18px; height:180px; padding:10px 6px; border-bottom:1px solid var(--line);}
+  .bar{ flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; height:100%; justify-content:flex-end; position:relative;}
+  .bar .col{ width:34px; border-radius:6px 6px 0 0; cursor:pointer; position:relative; transition:opacity .12s;}
+  .bar .col:hover{ opacity:.8; }
+  .bar .col.resolved{ background:var(--teal); } .bar .col.escalated{ background:var(--coral); }
+  .bar .lab{ font-size:10.5px; color:var(--muted); font-family:'IBM Plex Mono', monospace;}
+  .bar .tip{ position:absolute; bottom:100%; left:50%; transform:translateX(-50%); background:var(--navy); color:#fff; font-size:10.5px; padding:4px 7px; border-radius:6px; white-space:nowrap; margin-bottom:6px; opacity:0; pointer-events:none; transition:opacity .12s; }
+  .bar .col:hover + .tip, .bar:hover .tip{ opacity:1; }
+
+  .faq-list{ display:flex; flex-direction:column; gap:10px; }
+  .faq-item{ border:1px solid var(--line); border-radius:10px; padding:12px 14px; }
+  .faq-item.resolved{ opacity:.5; }
+  .faq-item .q{ font-size:12.5px; font-weight:600; margin-bottom:2px; }
+  .faq-item .meta{ font-size:10.5px; color:var(--muted); margin-bottom:8px; }
+  .faq-item textarea{ width:100%; font-family:'Inter',sans-serif; font-size:12px; border:1px solid var(--line); border-radius:8px; padding:8px; resize:vertical; min-height:50px; outline:none; }
+  .faq-item textarea:focus{ border-color:var(--teal); }
+  .faq-item .actions{ margin-top:6px; display:flex; gap:8px; align-items:center; }
+  .faq-item button{ background:var(--navy); color:#fff; border:none; font-size:11px; font-weight:600; padding:6px 11px; border-radius:7px; cursor:pointer; }
+  .faq-item button:hover{ background:#0d1120; }
+  .faq-item .done-tag{ font-size:10.5px; color:var(--teal-dk); font-weight:700; display:none; }
+  .faq-item.resolved .done-tag{ display:inline; }
+  .faq-item.resolved textarea, .faq-item.resolved button{ display:none; }
+
+  .policy-block{ margin-bottom:16px; }
+  .policy-block label{ display:block; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin-bottom:5px;}
+  .policy-block textarea{ width:100%; font-family:'Inter',sans-serif; font-size:12.5px; line-height:1.5; border:1px solid var(--line); border-radius:8px; padding:10px; resize:vertical; min-height:64px; outline:none;}
+  .policy-block textarea:focus{ border-color:var(--teal); }
+
+  footer{ text-align:center; font-size:11.5px; color:var(--muted); padding:20px; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <h1>Prototipo interactivo — Asistente IA Comercial y Académico</h1>
+    <p>TRAINING Corporation · Sprint 0 · Escribe en el chat o usa los botones — todo responde de verdad</p>
+  </div>
+  <div class="disclaimer">⚠️ Prototipo de demostración: el catálogo, precios, métricas y conversaciones son datos ficticios para validar el flujo, no información real de TRAINING.</div>
+</div>
+
+<nav id="nav"></nav>
+
+<main>
+
+  <!-- SITIO WEB -->
+  <div class="screen active" id="s-web">
+    <div class="screen-label"><span>Sitio web — burbuja de chat funcional (haz clic para abrir, escribe una pregunta)</span></div>
+    <div class="browser">
+      <div class="browser-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="browser-url">training.com.co</span>
+      </div>
+      <div class="site">
+        <div class="brand">TRAINING</div>
+        <div class="headline">
+          <h2>Fórmate con los cursos que el mercado está pidiendo hoy.</h2>
+          <p>Cursos presenciales y virtuales en tecnología, negocios y habilidades digitales.</p>
+          <div class="courses-hint" id="web-courses-hint"></div>
+        </div>
+        <div class="bubble-hint" id="web-bubble-hint">¿Tienes preguntas? 👋</div>
+        <div class="bubble" id="web-bubble">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1 1 3.1 6.3L4 20l1.1-3.4A7.96 7.96 0 0 1 4 12Z" stroke="#04211D" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="chatwin hidden" id="web-chatwin">
+          <div class="chat-head">
+            <div class="chat-avatar">TA</div>
+            <div><div class="name">Asistente TRAINING</div><div class="status">● En línea</div></div>
+            <div class="close-x" id="web-close">✕</div>
+          </div>
+          <div class="chat-body" id="web-body"></div>
+          <div class="chat-input">
+            <input type="text" id="web-input" placeholder="Escribe tu pregunta…" autocomplete="off">
+            <button class="send" id="web-send">➤</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="escalation-banner" id="web-banner">🔺 Conversación escalada a: Asesor Comercial — historial completo transferido</div>
+  </div>
+
+  <!-- WHATSAPP -->
+  <div class="screen" id="s-wa">
+    <div class="screen-label"><span>Mismo asistente por WhatsApp — mismo motor de respuestas, mismo catálogo</span></div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="wa-head">
+          <div class="wa-avatar">TA</div>
+          <div><div class="name">Asistente TRAINING</div><div class="status">en línea</div></div>
+        </div>
+        <div class="wa-body" id="wa-body"></div>
+        <div class="wa-inputbar">
+          <input type="text" id="wa-input" placeholder="Mensaje" autocomplete="off">
+          <button class="send" id="wa-send">➤</button>
+        </div>
+      </div>
+    </div>
+    <div class="escalation-banner" id="wa-banner" style="max-width:300px;margin:10px auto 0;">🔺 Escalado a Asesor Comercial</div>
+  </div>
+
+  <!-- ADMIN -->
+  <div class="screen" id="s-admin">
+    <div class="screen-label">
+      <span>Panel de administración — edita el catálogo y pruébalo en vivo en el chat</span>
+      <button class="reset-btn" id="reset-demo">↺ Reiniciar demo</button>
+    </div>
+    <div class="adminwrap">
+      <div class="adminbar">
+        <div class="name">Panel del Asistente TRAINING</div>
+        <div style="font-size:12px;color:#AEB4C9;">Admin: María Gómez</div>
+      </div>
+      <div class="adminbody">
+        <div class="side" id="admin-nav">
+          <a data-tab="catalogo" class="on">Catálogo y precios</a>
+          <a data-tab="politicas">Políticas</a>
+          <a data-tab="faq">Preguntas sin resolver</a>
+          <a data-tab="reportes">Reportes</a>
+        </div>
+        <div class="content" id="admin-content"></div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>Prototipo interactivo de referencia para el Sprint 0 · Los datos son de ejemplo — no provienen de una fuente verificada de TRAINING · Recrear/ajustar con el equipo para la sesión de pruebas con usuarios.</footer>
+
+<script>
+/* ============ ESTADO ============ */
+const DEFAULT_CATALOG = [
+  {id:1, name:"Análisis de Datos con IA", modality:"Virtual", price:1450000, date:"18 ago 2026", status:"Publicado", requirements:"Bachillerato culminado y manejo básico de Excel."},
+  {id:2, name:"Desarrollo Web Full Stack", modality:"Presencial", price:2100000, date:"25 ago 2026", status:"Publicado", requirements:"Conocimientos básicos de lógica de programación."},
+  {id:3, name:"Ciberseguridad Aplicada", modality:"Virtual", price:1850000, date:"01 sep 2026", status:"Por revisar", requirements:"Conocimientos de redes a nivel usuario."},
+  {id:4, name:"Gestión de Proyectos Ágiles", modality:"Híbrida", price:1200000, date:"08 sep 2026", status:"Publicado", requirements:"No requiere experiencia previa."},
+];
+const DEFAULT_POLICIES = {
+  reembolso:"Reembolso del 100% si se solicita hasta 5 días calendario antes del inicio del curso. Después de esa fecha no aplica reembolso, pero sí aplazamiento.",
+  descuentos:"10% de descuento por pronto pago (pago completo 15 días antes del inicio). 15% para grupos de 3 o más personas de la misma empresa.",
+  aplazamiento:"Un aplazamiento gratuito a la siguiente cohorte disponible, solicitado con mínimo 3 días de anticipación."
+};
+const DEFAULT_FAQ = [
+  {id:1, q:"¿El certificado tiene validez internacional?", resolved:false},
+  {id:2, q:"¿Puedo pagar el curso de Ciberseguridad en cuotas mensuales?", resolved:false},
+  {id:3, q:"¿Hay convenio con universidades para homologar créditos?", resolved:false},
+];
+
+let state = {
+  catalog: JSON.parse(JSON.stringify(DEFAULT_CATALOG)),
+  policies: {...DEFAULT_POLICIES},
+  faq: JSON.parse(JSON.stringify(DEFAULT_FAQ)),
+};
+
+function saveState(){ /* solo en memoria: es un prototipo de demo, no persiste entre sesiones */ }
+
+/* ============ UTILIDADES ============ */
+function fmtPrice(n){ return "$" + Number(n).toLocaleString("es-CO"); }
+function stripAccents(s){ return s.normalize("NFD").replace(/[\u0300-\u036f]/g,""); }
+function norm(s){ return stripAccents(String(s||"").toLowerCase()); }
+
+function renderCourseHints(){
+  const el = document.getElementById('web-courses-hint');
+  el.innerHTML = state.catalog.filter(c=>c.status==="Publicado").map(c=>`<span>${c.name}</span>`).join('');
+}
+
+/* ============ MOTOR DE CHAT (compartido web + whatsapp) ============ */
+function createChatEngine(bodyId, bannerId){
+  const body = document.getElementById(bodyId);
+  const banner = document.getElementById(bannerId);
+  let lastCourse = null;
+  let leadCaptured = false;
+
+  function scrollDown(){ body.scrollTop = body.scrollHeight; }
+
+  function appendMsg(role, html){
+    const div = document.createElement('div');
+    div.className = 'chat-msg ' + role;
+    div.innerHTML = html;
+    body.appendChild(div);
+    scrollDown();
+    return div;
+  }
+
+  function appendQuickReplies(container, options){
+    const wrap = document.createElement('div');
+    wrap.className = 'quick-replies';
+    options.forEach(opt=>{
+      const span = document.createElement('span');
+      span.textContent = opt;
+      span.onclick = ()=> handleUserText(opt);
+      wrap.appendChild(span);
+    });
+    container.appendChild(wrap);
+  }
+
+  function showTyping(){
+    const div = document.createElement('div');
+    div.className = 'typing';
+    div.id = bodyId + '-typing';
+    div.innerHTML = '<span></span><span></span><span></span>';
+    body.appendChild(div);
+    scrollDown();
+  }
+  function hideTyping(){
+    const t = document.getElementById(bodyId + '-typing');
+    if(t) t.remove();
+  }
+
+  function findCourse(text){
+    const t = norm(text);
+    let best = null;
+    state.catalog.forEach(c=>{
+      const words = norm(c.name).split(" ").filter(w=>w.length>3);
+      const hit = words.some(w=> t.includes(w));
+      if(hit) best = c;
+    });
+    return best;
+  }
+
+  function showLeadForm(){
+    const div = appendMsg('bot', 'Claro, te conecto con un asesor comercial. ¿Me confirmas tu nombre y correo para pasarle la conversación completa?');
+    const form = document.createElement('div');
+    form.className = 'lead-form';
+    form.innerHTML = `
+      <input type="text" placeholder="Nombre completo" class="lead-name">
+      <input type="email" placeholder="Correo electrónico" class="lead-email">
+      <span class="err">Completa ambos campos con un correo válido.</span>
+      <button type="button">Enviar</button>
+    `;
+    div.appendChild(form);
+    scrollDown();
+    const btn = form.querySelector('button');
+    const nameI = form.querySelector('.lead-name');
+    const emailI = form.querySelector('.lead-email');
+    const err = form.querySelector('.err');
+    btn.onclick = ()=>{
+      const nm = nameI.value.trim();
+      const em = emailI.value.trim();
+      const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);
+      if(!nm || !validEmail){ err.style.display='block'; return; }
+      form.remove();
+      appendMsg('user', `${nm}, ${em}`);
+      leadCaptured = true;
+      setTimeout(()=>{
+        showTyping();
+        setTimeout(()=>{
+          hideTyping();
+          appendMsg('bot', `Gracias, ${nm.split(' ')[0]}. Un asesor comercial continuará esta conversación en breve, ya tiene todo tu historial 🙌`);
+          banner.classList.add('show');
+        }, 900);
+      }, 300);
+    };
+  }
+
+  function botReply(userText){
+    const t = norm(userText);
+    showTyping();
+    setTimeout(()=>{
+      hideTyping();
+
+      // saludo
+      if(/^(hola|buenas|buenos dias|buenas tardes|hey|holi)/.test(t)){
+        const div = appendMsg('bot', '¡Hola! Soy el asistente de TRAINING 👋 ¿En qué te puedo ayudar hoy?');
+        appendQuickReplies(div, ['Ver cursos','Precios','Hablar con un asesor']);
+        return;
+      }
+
+      // ver cursos / catálogo
+      if(t.includes('ver curso') || t === 'cursos' || t.includes('que cursos') || t.includes('cuales cursos')){
+        const list = state.catalog.filter(c=>c.status==="Publicado").map(c=>`• <b>${c.name}</b> (${c.modality})`).join('<br>');
+        const div = appendMsg('bot', `Estos son nuestros cursos disponibles:<br>${list}<br><br>¿Sobre cuál quieres más información?`);
+        appendQuickReplies(div, state.catalog.filter(c=>c.status==="Publicado").map(c=>c.name));
+        return;
+      }
+
+      // asesor / humano / inscribirme
+      if(t.includes('asesor') || t.includes('humano') || t.includes('inscrib') || t.includes('persona real') || t.includes('descuento') && t.includes('aplica')){
+        showLeadForm();
+        return;
+      }
+
+      // requisitos
+      if(t.includes('requisito')){
+        if(lastCourse){
+          appendMsg('bot', `Para <b>${lastCourse.name}</b>, el requisito es: ${lastCourse.requirements}`);
+        } else {
+          const div = appendMsg('bot', '¿De qué curso necesitas los requisitos?');
+          appendQuickReplies(div, state.catalog.filter(c=>c.status==="Publicado").map(c=>c.name));
+        }
+        return;
+      }
+
+      // curso mencionado (por nombre, o tras "precios" genérico)
+      const course = findCourse(userText);
+      if(course){
+        lastCourse = course;
+        if(course.status !== 'Publicado'){
+          const div = appendMsg('bot', `El curso <b>${course.name}</b> todavía está en revisión y no tengo el detalle final de fecha y cupos. Te puedo conectar con un asesor para confirmarlo.`);
+          appendQuickReplies(div, ['Hablar con un asesor']);
+          return;
+        }
+        const div = appendMsg('bot', `El curso <b>${course.name}</b> tiene un valor de <span class="data">${fmtPrice(course.price)} COP</span>, modalidad ${course.modality.toLowerCase()}, próxima cohorte <span class="data">${course.date}</span>.`);
+        appendQuickReplies(div, ['Ver requisitos','Quiero inscribirme']);
+        return;
+      }
+
+      // precio genérico sin curso identificado
+      if(t.includes('precio') || t.includes('costo') || t.includes('cuanto cuesta') || t.includes('vale')){
+        const div = appendMsg('bot', '¿De qué curso te gustaría saber el precio?');
+        appendQuickReplies(div, state.catalog.filter(c=>c.status==="Publicado").map(c=>c.name));
+        return;
+      }
+
+      // políticas
+      if(t.includes('reembolso')){ appendMsg('bot', state.policies.reembolso); return; }
+      if(t.includes('aplaz')){ appendMsg('bot', state.policies.aplazamiento); return; }
+      if(t.includes('descuento')){ appendMsg('bot', state.policies.descuentos); return; }
+
+      // fallback
+      const div = appendMsg('bot', 'No tengo información exacta sobre eso todavía 🤔 ¿Quieres que te conecte con un asesor o prefieres ver los cursos disponibles?');
+      appendQuickReplies(div, ['Hablar con un asesor','Ver cursos']);
+    }, 700 + Math.random()*500);
+  }
+
+  function handleUserText(text){
+    if(!text || !text.trim()) return;
+    appendMsg('user', text.trim().replace(/</g,'&lt;'));
+    botReply(text);
+  }
+
+  function init(){
+    body.innerHTML = '';
+    banner.classList.remove('show');
+    lastCourse = null; leadCaptured = false;
+    const div = appendMsg('bot', '¡Hola! Soy el asistente de TRAINING 👋 ¿En qué te puedo ayudar hoy?');
+    appendQuickReplies(div, ['Ver cursos','Precios','Hablar con un asesor']);
+  }
+
+  return { handleUserText, init };
+}
+
+/* instanciar los dos chats */
+const webChat = createChatEngine('web-body', 'web-banner');
+const waChat = createChatEngine('wa-body', 'wa-banner');
+
+function wireInput(inputId, sendId, engine){
+  const input = document.getElementById(inputId);
+  const btn = document.getElementById(sendId);
+  const go = ()=>{ const v = input.value; input.value=''; engine.handleUserText(v); };
+  btn.onclick = go;
+  input.addEventListener('keydown', e=>{ if(e.key==='Enter') go(); });
+}
+wireInput('web-input','web-send', webChat);
+wireInput('wa-input','wa-send', waChat);
+
+/* burbuja del sitio web: abrir / cerrar */
+const bubble = document.getElementById('web-bubble');
+const bubbleHint = document.getElementById('web-bubble-hint');
+const chatwin = document.getElementById('web-chatwin');
+function openWebChat(){ chatwin.classList.remove('hidden'); bubble.style.display='none'; bubbleHint.style.display='none'; }
+function closeWebChat(){ chatwin.classList.add('hidden'); bubble.style.display='flex'; bubbleHint.style.display='block'; }
+bubble.onclick = openWebChat;
+bubbleHint.onclick = openWebChat;
+document.getElementById('web-close').onclick = closeWebChat;
+
+/* ============ NAV PRINCIPAL ============ */
+const screens = [
+  {id:'s-web', label:'Sitio web'},
+  {id:'s-wa', label:'WhatsApp'},
+  {id:'s-admin', label:'Panel Admin'},
+];
+const nav = document.getElementById('nav');
+screens.forEach((s,i)=>{
+  const btn = document.createElement('button');
+  btn.textContent = s.label;
+  if(i===0) btn.classList.add('active');
+  btn.onclick = ()=>{
+    document.querySelectorAll('.screen').forEach(sc=>sc.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+    document.getElementById(s.id).classList.add('active');
+    btn.classList.add('active');
+  };
+  nav.appendChild(btn);
+});
+
+/* ============ PANEL ADMIN ============ */
+let adminTab = 'catalogo';
+const adminContent = document.getElementById('admin-content');
+
+function renderAdmin(){
+  document.querySelectorAll('#admin-nav a').forEach(a=>{
+    a.classList.toggle('on', a.dataset.tab===adminTab);
+  });
+  if(adminTab==='catalogo') renderCatalogTab();
+  else if(adminTab==='politicas') renderPoliciesTab();
+  else if(adminTab==='faq') renderFaqTab();
+  else if(adminTab==='reportes') renderReportsTab();
+}
+
+document.querySelectorAll('#admin-nav a').forEach(a=>{
+  a.onclick = ()=>{ adminTab = a.dataset.tab; renderAdmin(); };
+});
+
+function renderCatalogTab(){
+  const rows = state.catalog.map(c=>`
+    <tr data-id="${c.id}">
+      <td contenteditable="true" data-field="name">${c.name}</td>
+      <td contenteditable="true" data-field="modality">${c.modality}</td>
+      <td class="price" contenteditable="true" data-field="price">${c.price}</td>
+      <td contenteditable="true" data-field="date">${c.date}</td>
+      <td><span class="badge ${c.status==='Publicado'?'on':'pend'}" data-action="toggle-status">${c.status}</span></td>
+      <td><span class="row-del" data-action="del" title="Eliminar curso">✕</span></td>
+    </tr>
+  `).join('');
+  adminContent.innerHTML = `
+    <h3>Catálogo de cursos</h3>
+    <div class="desc">Estos datos alimentan directamente las respuestas del asistente. Edita cualquier celda y pruébalo en la pestaña "Sitio web" o "WhatsApp".</div>
+    <table>
+      <tr><th>Curso</th><th>Modalidad</th><th>Precio (COP)</th><th>Próxima cohorte</th><th>Estado</th><th></th></tr>
+      ${rows}
+    </table>
+    <button class="add-row-btn" id="add-course">+ Añadir curso</button>
+    <div class="live-note">💡 Los cambios aquí se reflejan de inmediato en el asistente — pruébalo preguntando por el curso que acabas de editar.</div>
+  `;
+
+  adminContent.querySelectorAll('td[contenteditable]').forEach(td=>{
+    td.addEventListener('blur', ()=>{
+      const tr = td.closest('tr');
+      const id = Number(tr.dataset.id);
+      const field = td.dataset.field;
+      const course = state.catalog.find(c=>c.id===id);
+      if(!course) return;
+      let val = td.textContent.trim();
+      if(field==='price'){
+        val = Number(val.replace(/[^\d]/g,'')) || 0;
+        td.textContent = val;
+      }
+      course[field] = val;
+      renderCourseHints();
+    });
+  });
+  adminContent.querySelectorAll('[data-action="toggle-status"]').forEach(b=>{
+    b.onclick = ()=>{
+      const tr = b.closest('tr');
+      const id = Number(tr.dataset.id);
+      const course = state.catalog.find(c=>c.id===id);
+      course.status = course.status==='Publicado' ? 'Por revisar' : 'Publicado';
+      renderCatalogTab();
+      renderCourseHints();
+    };
+  });
+  adminContent.querySelectorAll('[data-action="del"]').forEach(b=>{
+    b.onclick = ()=>{
+      const tr = b.closest('tr');
+      const id = Number(tr.dataset.id);
+      state.catalog = state.catalog.filter(c=>c.id!==id);
+      renderCatalogTab();
+      renderCourseHints();
+    };
+  });
+  document.getElementById('add-course').onclick = ()=>{
+    const newId = Math.max(0,...state.catalog.map(c=>c.id)) + 1;
+    state.catalog.push({id:newId, name:'Nuevo curso', modality:'Virtual', price:0, date:'Por definir', status:'Por revisar', requirements:'Por definir.'});
+    renderCatalogTab();
+    renderCourseHints();
+  };
+}
+
+function renderPoliciesTab(){
+  adminContent.innerHTML = `
+    <h3>Políticas</h3>
+    <div class="desc">El asistente usa este texto tal cual cuando le preguntan por reembolsos, aplazamientos o descuentos. Edítalo y pruébalo en el chat.</div>
+    <div class="policy-block"><label>Política de reembolso</label><textarea id="pol-reembolso">${state.policies.reembolso}</textarea></div>
+    <div class="policy-block"><label>Descuentos</label><textarea id="pol-descuentos">${state.policies.descuentos}</textarea></div>
+    <div class="policy-block"><label>Aplazamientos</label><textarea id="pol-aplazamiento">${state.policies.aplazamiento}</textarea></div>
+  `;
+  document.getElementById('pol-reembolso').addEventListener('input', e=> state.policies.reembolso = e.target.value);
+  document.getElementById('pol-descuentos').addEventListener('input', e=> state.policies.descuentos = e.target.value);
+  document.getElementById('pol-aplazamiento').addEventListener('input', e=> state.policies.aplazamiento = e.target.value);
+}
+
+function renderFaqTab(){
+  const items = state.faq.map(f=>`
+    <div class="faq-item ${f.resolved?'resolved':''}" data-id="${f.id}">
+      <div class="q">${f.q}</div>
+      <div class="meta">Sin respuesta en la base de conocimiento · reportada por el bot</div>
+      <textarea placeholder="Escribe la respuesta que debería dar el asistente…"></textarea>
+      <div class="actions">
+        <button data-action="resolve">Guardar y marcar como resuelta</button>
+        <span class="done-tag">✔ Añadida a la base de conocimiento</span>
+      </div>
+    </div>
+  `).join('');
+  adminContent.innerHTML = `
+    <h3>Preguntas sin resolver</h3>
+    <div class="desc">Consultas que el asistente no supo responder y escaló o dejó pendientes. Responde para que pase a formar parte del conocimiento del bot.</div>
+    <div class="faq-list">${items || '<div class="desc">No hay preguntas pendientes 🎉</div>'}</div>
+  `;
+  adminContent.querySelectorAll('[data-action="resolve"]').forEach(btn=>{
+    btn.onclick = ()=>{
+      const item = btn.closest('.faq-item');
+      const id = Number(item.dataset.id);
+      const f = state.faq.find(x=>x.id===id);
+      f.resolved = true;
+      item.classList.add('resolved');
+    };
+  });
+}
+
+function renderReportsTab(){
+  const days = [
+    {lab:'Lun', resolved:70, escalated:0, rn:58, en:0},
+    {lab:'Mar', resolved:85, escalated:0, rn:71, en:0},
+    {lab:'Mié', resolved:0, escalated:40, rn:0, en:22},
+    {lab:'Jue', resolved:90, escalated:0, rn:64, en:0},
+    {lab:'Vie', resolved:75, escalated:0, rn:52, en:0},
+    {lab:'Sáb', resolved:0, escalated:30, rn:0, en:14},
+    {lab:'Dom', resolved:60, escalated:0, rn:33, en:0},
+  ];
+  const bars = days.map(d=>{
+    const isEsc = d.escalated>0;
+    const h = isEsc ? d.escalated : d.resolved;
+    const n = isEsc ? d.en : d.rn;
+    const cls = isEsc ? 'escalated' : 'resolved';
+    return `<div class="bar">
+      <div class="col ${cls}" style="height:${h}%"></div>
+      <div class="tip">${n} conversaciones</div>
+      <div class="lab">${d.lab}</div>
+    </div>`;
+  }).join('');
+  adminContent.innerHTML = `
+    <h3>Resueltas vs. escaladas</h3>
+    <div class="desc">Vista de referencia para el MVP con datos de ejemplo — se conecta con datos reales una vez el asistente esté en producción. Pasa el cursor sobre una barra para ver el detalle.</div>
+    <div class="kpis">
+      <div class="kpi"><div class="num">412</div><div class="lab">Conversaciones totales</div></div>
+      <div class="kpi"><div class="num">78%</div><div class="lab">Resueltas por el bot</div></div>
+      <div class="kpi"><div class="num">3.2s</div><div class="lab">Tiempo promedio de respuesta</div></div>
+    </div>
+    <div class="bars">${bars}</div>
+  `;
+}
+
+document.getElementById('reset-demo').onclick = ()=>{
+  state = {
+    catalog: JSON.parse(JSON.stringify(DEFAULT_CATALOG)),
+    policies: {...DEFAULT_POLICIES},
+    faq: JSON.parse(JSON.stringify(DEFAULT_FAQ)),
+  };
+  renderAdmin();
+  renderCourseHints();
+  webChat.init();
+  waChat.init();
+};
+
+/* ============ INIT ============ */
+renderCourseHints();
+webChat.init();
+waChat.init();
+renderAdmin();
+</script>
+
+</body>
+</html>
