@@ -1,0 +1,22 @@
+[
+  {
+    "id": "curso-001",
+    "nombre": "Excel Avanzado",
+    "precio": 450000,
+    "moneda": "COP",
+    "fechas_inicio": ["2026-10-05", "2026-11-10"],
+    "modalidades": ["virtual", "presencial"],
+    "requisitos": ["Bachiller", "Manejo básico de PC"],
+    "duracion_semanas": 6
+  },
+  {
+    "id": "curso-002",
+    "nombre": "Python para Análisis de Datos",
+    "precio": 620000,
+    "moneda": "COP",
+    "fechas_inicio": ["2026-10-20"],
+    "modalidades": ["virtual"],
+    "requisitos": ["Ninguno"],
+    "duracion_semanas": 8
+  }
+]

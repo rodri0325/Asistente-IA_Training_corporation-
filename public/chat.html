@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asistente de cursos · Training Corporation</title>
+  <link rel="stylesheet" href="/chat.css">
+  <script src="/chat.js" defer></script>
+</head>
+<body class="standalone">
+  <main id="chat-panel" class="chat-panel" aria-labelledby="chat-title">
+    <header class="chat-header">
+      <div><h1 id="chat-title">Asistente de cursos</h1><p>Training Corporation · Pruebas</p></div>
+    </header>
+    <div id="chat-messages" class="chat-messages" role="log" aria-label="Conversación" aria-live="polite" aria-relevant="additions" tabindex="0">
+      <p class="message assistant"><strong>Asistente</strong><span>Hola. ¿Sobre qué curso quieres consultar? Incluye el nombre del curso y pregunta por precios, fechas, requisitos o modalidades.</span></p>
+    </div>
+    <p id="chat-status" class="chat-status" role="status" aria-live="polite"></p>
+    <form id="chat-form" class="chat-form">
+      <label for="chat-input">Tu consulta</label>
+      <div class="input-row"><input id="chat-input" name="mensaje" type="text" placeholder="Escribe tu pregunta…" maxlength="1000" required autocomplete="off" aria-describedby="chat-hint"><button id="chat-send" type="submit">Enviar</button></div>
+      <small id="chat-hint">Hasta 1000 caracteres · Datos ficticios</small>
+    </form>
+  </main>
+</body>
+</html>
