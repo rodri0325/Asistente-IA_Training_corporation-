@@ -2,7 +2,7 @@
 
 MVP del Sprint 1: chat web para consultar precios, fechas de inicio, requisitos y modalidades (HU1–HU4 y HU10). Node.js + Express, catálogo JSON y Gemini desde el backend. El archivo `prototipo_interactivo (1).html` conserva el prototipo original de Sprint 0; la aplicación funcional está en `public/`.
 
-Los cursos incluidos son **datos ficticios de prueba**, tomados del ejemplo del instructivo. No se extrajeron de SharePoint ni representan una oferta oficial.
+El catálogo contiene **14 cursos simulados de prueba**: dos del ejemplo del instructivo y doce añadidos en la rama. No consta una fuente oficial validada por el PO; no representan una oferta comercial confirmada. El Sprint 1 incluye HU1–HU4 y HU10 (**18 puntos**), actualmente **En validación**. HU5–HU9 y HU11 quedan para próximos sprints.
 
 ## Ejecutar en PowerShell
 
@@ -31,9 +31,9 @@ $body = @{ mensaje = '¿Cuánto cuesta Excel Avanzado?' } | ConvertTo-Json
 Invoke-RestMethod -Uri http://localhost:5000/chat -Method Post -ContentType 'application/json; charset=utf-8' -Body ([System.Text.Encoding]::UTF8.GetBytes($body))
 ```
 
-`POST /chat` acepta `{"mensaje":"pregunta"}` (1–1000 caracteres) y devuelve `{"respuesta":"texto"}`. Los errores devuelven `{"error":"descripción"}`: 400 entrada inválida, 413 cuerpo demasiado grande, 415 formato incorrecto, 429 cuota agotada, 502 fallo de Gemini, 503 falta de clave y 504 tiempo agotado. La espera máxima del proveedor es 15 segundos; esto no acredita el criterio de respuesta en ≤5 segundos de la wiki.
+`POST /chat` acepta `{"mensaje":"pregunta"}` (1–1000 caracteres) y devuelve `{"respuesta":"texto"}`. Los errores devuelven `{"error":"descripción"}`: 400 entrada inválida, 413 cuerpo demasiado grande, 415 formato incorrecto, 429 cuota agotada, 502 fallo de Gemini, 503 falta de clave o indisponibilidad temporal de Gemini y 504 tiempo agotado. La espera máxima del proveedor es 15 segundos; esto no acredita el criterio de respuesta en ≤5 segundos de la wiki.
 
-Los tests usan la API de Gemini **simulada**: verifican contrato HTTP, envío del catálogo, aislamiento de instrucciones, validaciones, errores y archivos privados. No certifican exactitud ni latencia del modelo real. Los escenarios de aceptación y pendientes están en [docs/sprint-1.md](docs/sprint-1.md).
+Los tests usan la API de Gemini **simulada**: verifican contrato HTTP, envío del catálogo, aislamiento de instrucciones, validaciones, errores y archivos privados. No certifican exactitud ni latencia del modelo real. El estado y los criterios de aceptación están en [docs/sprint-1.md](docs/sprint-1.md). La [matriz del catálogo](docs/casos-prueba-catalogo.md) contiene 56 casos manuales para los 14 cursos, sin dar por acreditada su ejecución.
 
 ## Estructura
 
