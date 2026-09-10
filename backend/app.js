@@ -30,10 +30,15 @@ ${JSON.stringify(catalogo)}`;
 
 export function crearApp({
   apiKey = process.env.GEMINI_API_KEY,
-  model = process.env.GEMINI_MODEL || 'gemini-2.5-flash',
+  model = process.env.GEMINI_MODEL || 'gemini-3.6-flash',
   fetchImpl = globalThis.fetch,
 } = {}) {
   const app = express();
+  const normalizedApiKey = typeof apiKey === 'string' ? apiKey.trim() : '';
+  const normalizedModel = String(model || 'gemini-3.6-flash')
+    .trim()
+    .replace(/^models\//, '')
+    .replace(/:generateContent$/, '');
   app.disable('x-powered-by');
   app.use(express.json({ limit: '8kb' }));
   app.use(express.static(publicPath));
@@ -46,7 +51,7 @@ export function crearApp({
     if (typeof mensaje !== 'string' || !mensaje.trim() || mensaje.length > 1000) {
       return res.status(400).json({ error: 'Escribe una pregunta de 1 a 1000 caracteres.' });
     }
-    if (!apiKey?.trim()) {
+    if (!normalizedApiKey) {
       return res.status(503).json({
         error: 'El asistente todavía no está configurado. Falta la clave de Gemini en el servidor.',
       });
@@ -54,27 +59,31 @@ export function crearApp({
 
     try {
       const response = await fetchImpl(
-        `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`,
+        `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(normalizedModel)}:generateContent`,
         {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
+          headers: { 'Content-Type': 'application/json', 'x-goog-api-key': normalizedApiKey },
           signal: AbortSignal.timeout(15000),
           body: JSON.stringify({
             systemInstruction: { parts: [{ text: construirInstrucciones() }] },
             contents: [{ role: 'user', parts: [{ text: mensaje.trim() }] }],
             generationConfig: {
               temperature: 0.2, maxOutputTokens: 1024,
-              ...(model === 'gemini-2.5-flash' ? { thinkingConfig: { thinkingBudget: 0 } } : {}),
+              ...(normalizedModel === 'gemini-2.5-flash' ? { thinkingConfig: { thinkingBudget: 0 } } : {}),
             },
           }),
         },
       );
       if (!response.ok) {
+        console.error(`Gemini respondió con HTTP ${response.status}.`);
         const cuotaAgotada = response.status === 429;
-        return res.status(cuotaAgotada ? 429 : 502).json({
+        const noDisponible = response.status === 503;
+        return res.status(cuotaAgotada ? 429 : noDisponible ? 503 : 502).json({
           error: cuotaAgotada
             ? 'El asistente alcanzó el límite de consultas. Intenta más tarde.'
-            : 'No fue posible consultar a Gemini. Intenta más tarde o consulta con un asesor.',
+            : noDisponible
+              ? 'Gemini no está disponible temporalmente. Intenta de nuevo en unos segundos.'
+              : 'No fue posible consultar a Gemini. Intenta más tarde o consulta con un asesor.',
         });
       }
       const data = await response.json();

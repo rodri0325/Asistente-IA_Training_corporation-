@@ -19,7 +19,7 @@ npm.cmd start
 
 Abre http://localhost:5000. Si `.env` ya existe, edítalo sin sobrescribirlo. La clave permanece en el servidor y `.env` está excluido de Git. Sin clave, la página abre y el chat informa que falta configuración; no simula respuestas de IA. Reinicia el servidor después de modificar `.env` o el catálogo.
 
-`GEMINI_MODEL` permite elegir un modelo habilitado en tu cuenta; el valor inicial es `gemini-2.5-flash`, como en el instructivo. Disponibilidad y cuotas dependen de Google. La integración usa [generateContent REST](https://ai.google.dev/api/generate-content) con `fetch` nativo de Node, sin instalar un SDK adicional.
+`GEMINI_MODEL` permite elegir un modelo habilitado en tu cuenta; el valor inicial es `gemini-3.6-flash`. Disponibilidad y cuotas dependen de Google. La integración usa [generateContent REST](https://ai.google.dev/api/generate-content) con `fetch` nativo de Node, sin instalar un SDK adicional.
 
 ## Probar
 

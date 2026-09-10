@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 import { crearApp } from '../backend/app.js';
 
 async function iniciar(t, options = {}) {
-  const server = crearApp({ model: 'gemini-2.5-flash', ...options }).listen(0, '127.0.0.1');
+  const server = crearApp({ model: 'gemini-3.6-flash', ...options }).listen(0, '127.0.0.1');
   await once(server, 'listening');
   t.after(() => new Promise((resolve) => server.close(resolve)));
   return `http://127.0.0.1:${server.address().port}`;
@@ -42,7 +42,7 @@ test('HU1-HU4: contrato HTTP e integración con Gemini simulado', async (t) => {
         apiKey: 'clave-simulada',
         fetchImpl: async (url, options) => {
           llamadas++;
-          assert.equal(url, 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent');
+          assert.equal(url, 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent');
           assert.equal(options.headers['x-goog-api-key'], 'clave-simulada');
           assert.equal(options.method, 'POST');
           assert.ok(options.signal instanceof AbortSignal);
@@ -58,6 +58,25 @@ test('HU1-HU4: contrato HTTP e integración con Gemini simulado', async (t) => {
       assert.equal(llamadas, 1);
     });
   }
+});
+
+test('Normaliza la clave y el nombre del modelo antes de llamar a Gemini', async (t) => {
+  let llamada;
+  const baseUrl = await iniciar(t, {
+    apiKey: '  clave-simulada  ',
+    model: ' models/gemini-3.6-flash:generateContent ',
+    fetchImpl: async (url, options) => {
+      llamada = { url, key: options.headers['x-goog-api-key'] };
+      return respuestaGemini('Respuesta válida.');
+    },
+  });
+
+  const response = await preguntar(baseUrl, 'Hola');
+  assert.equal(response.status, 200);
+  assert.deepEqual(llamada, {
+    url: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent',
+    key: 'clave-simulada',
+  });
 });
 
 test('Rechaza mensajes vacíos, tipos incorrectos y exceso de longitud antes de llamar a Gemini', async (t) => {
@@ -100,6 +119,7 @@ test('Sin clave devuelve un error explícito y no intenta la API', async (t) => 
 test('Fallos del proveedor se traducen a errores seguros', async (t) => {
   const casos = [
     ['cuota', () => new Response('secreto del proveedor', { status: 429 }), 429],
+    ['proveedor no disponible', () => new Response('temporal', { status: 503 }), 503],
     ['clave rechazada', () => new Response('secreto del proveedor', { status: 403 }), 502],
     ['servidor caído', () => new Response('secreto del proveedor', { status: 500 }), 502],
     ['red', () => { throw new TypeError('secreto del proveedor'); }, 502],

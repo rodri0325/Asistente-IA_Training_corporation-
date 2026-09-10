@@ -76,7 +76,11 @@ form.addEventListener('submit', async (event) => {
     });
     const data = await response.json();
     if (!response.ok) {
-      throw new Error(typeof data.error === 'string' ? data.error : 'No se pudo completar la consulta. Inténtalo de nuevo.');
+      throw new Error(typeof data.error === 'string'
+        ? data.error
+        : response.status === 503
+          ? 'Gemini no está disponible temporalmente. Intenta de nuevo en unos segundos.'
+          : 'No se pudo completar la consulta. Inténtalo de nuevo.');
     }
     if (typeof data.respuesta !== 'string' || !data.respuesta.trim()) {
       throw new Error('El servidor no devolvió una respuesta válida. Inténtalo de nuevo.');

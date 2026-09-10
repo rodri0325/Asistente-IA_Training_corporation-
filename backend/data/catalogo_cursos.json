@@ -18,5 +18,125 @@
     "modalidades": ["virtual"],
     "requisitos": ["Ninguno"],
     "duracion_semanas": 8
+  },
+  {
+    "id": "curso-003",
+    "nombre": "Power BI para Inteligencia de Negocios",
+    "precio": 580000,
+    "moneda": "COP",
+    "fechas_inicio": ["2026-10-13", "2026-11-24"],
+    "modalidades": ["virtual", "presencial"],
+    "requisitos": ["Manejo básico de Excel"],
+    "duracion_semanas": 6
+  },
+  {
+    "id": "curso-004",
+    "nombre": "SQL y Bases de Datos",
+    "precio": 540000,
+    "moneda": "COP",
+    "fechas_inicio": ["2026-10-27", "2026-12-01"],
+    "modalidades": ["virtual"],
+    "requisitos": ["Nociones básicas de informática"],
+    "duracion_semanas": 7
+  },
+  {
+    "id": "curso-005",
+    "nombre": "Inteligencia Artificial Generativa para Empresas",
+    "precio": 680000,
+    "moneda": "COP",
+    "fechas_inicio": ["2026-10-15", "2026-11-19"],
+    "modalidades": ["virtual", "híbrida"],
+    "requisitos": ["Ninguno"],
+    "duracion_semanas": 5
+  },
+  {
+    "id": "curso-006",
+    "nombre": "Desarrollo Web Frontend",
+    "precio": 750000,
+    "moneda": "COP",
+    "fechas_inicio": ["2026-10-06", "2026-12-03"],
+    "modalidades": ["presencial", "virtual"],
+    "requisitos": ["Manejo básico de computador", "Disponibilidad para practicar"],
+    "duracion_semanas": 10
+  },
+  {
+    "id": "curso-007",
+    "nombre": "Ciberseguridad para Usuarios y Empresas",
+    "precio": 630000,
+    "moneda": "COP",
+    "fechas_inicio": ["2026-10-22", "2026-12-10"],
+    "modalidades": ["virtual"],
+    "requisitos": ["Ninguno"],
+    "duracion_semanas": 6
+  },
+  {
+    "id": "curso-008",
+    "nombre": "Gestión de Proyectos con Metodologías Ágiles",
+    "precio": 520000,
+    "moneda": "COP",
+    "fechas_inicio": ["2026-10-08", "2026-11-26"],
+    "modalidades": ["virtual", "híbrida"],
+    "requisitos": ["Ninguno"],
+    "duracion_semanas": 5
+  },
+  {
+    "id": "curso-009",
+    "nombre": "Marketing Digital y Redes Sociales",
+    "precio": 490000,
+    "moneda": "COP",
+    "fechas_inicio": ["2026-10-29", "2026-12-08"],
+    "modalidades": ["virtual"],
+    "requisitos": ["Ninguno"],
+    "duracion_semanas": 6
+  },
+  {
+    "id": "curso-010",
+    "nombre": "Diseño UX/UI para Productos Digitales",
+    "precio": 720000,
+    "moneda": "COP",
+    "fechas_inicio": ["2026-11-03", "2026-12-15"],
+    "modalidades": ["presencial", "virtual"],
+    "requisitos": ["Manejo básico de computador"],
+    "duracion_semanas": 8
+  },
+  {
+    "id": "curso-011",
+    "nombre": "Computación en la Nube",
+    "precio": 700000,
+    "moneda": "COP",
+    "fechas_inicio": ["2026-11-05"],
+    "modalidades": ["virtual"],
+    "requisitos": ["Nociones básicas de redes", "Manejo básico de computador"],
+    "duracion_semanas": 8
+  },
+  {
+    "id": "curso-012",
+    "nombre": "Liderazgo y Comunicación Efectiva",
+    "precio": 420000,
+    "moneda": "COP",
+    "fechas_inicio": ["2026-10-17", "2026-11-28"],
+    "modalidades": ["presencial", "virtual"],
+    "requisitos": ["Ninguno"],
+    "duracion_semanas": 4
+  },
+  {
+    "id": "curso-013",
+    "nombre": "Finanzas Básicas para Emprendedores",
+    "precio": 460000,
+    "moneda": "COP",
+    "fechas_inicio": ["2026-10-24", "2026-12-12"],
+    "modalidades": ["virtual", "presencial"],
+    "requisitos": ["Ninguno"],
+    "duracion_semanas": 5
+  },
+  {
+    "id": "curso-014",
+    "nombre": "Automatización de Procesos con Herramientas No Code",
+    "precio": 570000,
+    "moneda": "COP",
+    "fechas_inicio": ["2026-11-12"],
+    "modalidades": ["virtual"],
+    "requisitos": ["Manejo básico de herramientas digitales"],
+    "duracion_semanas": 6
   }
 ]
