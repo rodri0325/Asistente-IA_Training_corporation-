@@ -4,3 +4,8 @@ node_modules/
 !.env.example
 coverage/
 *.log
+build/
+wordpress-plugin/assets/
+.wordpress-local/
+test-results/
+playwright-report/

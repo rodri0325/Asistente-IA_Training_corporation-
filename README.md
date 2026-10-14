@@ -1,15 +1,29 @@
 # Asistente IA — TRAINING Corporation
 
-MVP del Sprint 1: chat web para consultar precios, fechas de inicio, requisitos y modalidades (HU1–HU4 y HU10). Node.js + Express, catálogo JSON y Gemini desde el backend. El archivo `prototipo_interactivo (1).html` conserva el prototipo original de Sprint 0; la aplicación funcional está en `public/`.
+Base del Sprint 1 con integraciones de WhatsApp y WordPress para Sprint 2: chat web para consultar precios, fechas de inicio, requisitos y modalidades (HU1–HU4 y HU10), webhook de WhatsApp Cloud API y plugin instalable de WordPress. Node.js + Express, catálogo JSON y Gemini desde el backend. El archivo `prototipo_interactivo (1).html` conserva el prototipo original de Sprint 0; la aplicación funcional está en `public/`.
 
 El catálogo contiene **14 cursos simulados de prueba**: dos del ejemplo del instructivo y doce añadidos en la rama. No consta una fuente oficial validada por el PO; no representan una oferta comercial confirmada. El Sprint 1 incluye HU1–HU4 y HU10 (**18 puntos**), actualmente **En validación**. HU5–HU9 y HU11 quedan para próximos sprints.
+
+## WordPress — prueba local y plugin
+
+Haz doble clic en **`INICIAR-WORDPRESS.cmd`** y, cuando indique que está preparado, abre **http://127.0.0.1:9400**. Requiere Node.js 22.13 o superior; la primera vez descarga WordPress y su base SQLite. No necesitas cuenta de Meta, PHP ni WordPress instalados. Mantén la ventana abierta; Ctrl+C detiene la prueba.
+
+La demo ejecuta WordPress real 6.8.3 y el plugin, con **respuestas simuladas** y un catálogo ficticio. El sitio se reinicia en cada arranque. Para entrar a `/wp-admin/`, usa `admin` y `training-local-demo` (solo para esta prueba local). La [guía de WordPress](docs/wordpress.md) explica cómo conectar Gemini, cambiar los ajustes e instalar el ZIP en otro WordPress.
+
+`npm.cmd run package:wordpress` genera `build/training-asistente-ia.zip`. El plugin permite configurar la URL del backend y mostrar u ocultar la burbuja. Los estilos están aislados del tema y las claves permanecen en el backend. No se ha publicado en el sitio de TRAINING.
+
+## WhatsApp — Sprint 2
+
+La integración con WhatsApp Cloud API está implementada en el mismo backend. `GET /webhook` verifica el callback de Meta; `POST /webhook` valida la firma con el secreto de la aplicación, confirma la recepción y procesa los mensajes en segundo plano. El chat web y WhatsApp comparten el servicio de Gemini y el catálogo. La configuración y la conversación con un teléfono real siguen pendientes hasta conectar una aplicación de Meta.
+
+Sigue la **[guía de WhatsApp desde cero](docs/whatsapp-meta.md)** para crear la app, configurar `.env`, exponer el servidor por HTTPS y registrar las pruebas de extremo a extremo. No se necesita ejecutar la plantilla Python. Las credenciales permanecen en `.env`, excluido de Git.
 
 ## Ejecutar en PowerShell
 
 Requiere Node.js 22.13 o superior y una clave propia de [Google AI Studio](https://aistudio.google.com/apikey).
 
 ```powershell
-Set-Location 'C:\Users\Asus\Desktop\proyecto 2'
+# Abre PowerShell dentro de la carpeta del repositorio.
 npm.cmd ci
 if (-not (Test-Path .env)) { Copy-Item .env.example .env }
 notepad .env
@@ -37,11 +51,15 @@ Los tests usan la API de Gemini **simulada**: verifican contrato HTTP, envío de
 
 ## Estructura
 
-- `backend/app.js`: carga el catálogo al iniciar, sirve únicamente `public/` y procesa `/chat`.
+- `backend/app.js`: sirve únicamente `public/` y conecta `/chat` y `/webhook`.
+- `backend/asistente.js`: servicio compartido de Gemini e instrucciones del catálogo.
+- `backend/whatsapp.js`: verificación, firma, cola en memoria, deduplicación y envío a Meta.
 - `backend/server.js`: arranque local en `127.0.0.1:5000`.
 - `backend/data/catalogo_cursos.json`: única fuente de datos de cursos.
 - `public/`: página de prueba, chat independiente y widget flotante.
-- `tests/chat.test.js`: pruebas con `node:test`; `eslint.config.js`: análisis estático.
+- `widget/` y `wordpress-plugin/`: widget empaquetable y plugin con ajustes de WordPress.
+- `scripts/wordpress-local.js`: demo local de WordPress y backend.
+- `tests/` y `e2e/`: pruebas de backend, plugin PHP e integración en navegador; `eslint.config.js`: análisis estático.
 
 Cada consulta es independiente: incluye el nombre del curso en cada pregunta. Los mensajes solo permanecen en la página actual. Si falta información, las instrucciones del modelo indican ofrecer un asesor; no hay transferencia ni registro de solicitudes. El control por instrucciones requiere validación real del equipo antes de publicar.
 
@@ -55,4 +73,4 @@ En el mismo servidor puedes reutilizar el marcado del widget de `public/index.ht
   style="max-width:100%;border:0;border-radius:16px"></iframe>
 ```
 
-Este ejemplo es local. Para pruebas compartidas se debe alojar el backend en un servidor accesible con HTTPS y sustituir la URL. No se ha desplegado en TRAINING. SharePoint automático, OCR, WhatsApp, CRM y panel administrativo quedan fuera de este MVP.
+Este ejemplo es local. Para pruebas compartidas se debe alojar el backend en un servidor accesible con HTTPS y sustituir la URL. No se ha desplegado en TRAINING. SharePoint automático, OCR, CRM y panel administrativo quedan fuera de este avance. WhatsApp se incorpora en Sprint 2 según la guía enlazada arriba.

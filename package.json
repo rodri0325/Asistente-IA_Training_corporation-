@@ -8,15 +8,27 @@
   },
   "scripts": {
     "start": "node --env-file-if-exists=.env backend/server.js",
-    "test": "node --test",
-    "lint": "eslint backend public tests eslint.config.js"
+    "test": "node --test tests/*.test.js",
+    "lint": "eslint backend public widget scripts tests e2e eslint.config.js playwright.config.js",
+    "build:widget": "node scripts/build-widget.js",
+    "package:wordpress": "npm run build:widget && node scripts/package-wordpress.js",
+    "wordpress:demo": "npm run build:widget && node scripts/wordpress-local.js --mock",
+    "wordpress:local": "npm run build:widget && node --env-file-if-exists=.env scripts/wordpress-local.js",
+    "test:wordpress": "npm run build:widget && playwright test",
+    "test:php": "node scripts/test-plugin-php.js"
   },
   "dependencies": {
     "express": "^5.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@php-wasm/node": "3.1.0",
+    "@php-wasm/universal": "3.1.0",
+    "@playwright/test": "^1.64.0",
+    "@wp-playground/wordpress": "3.1.0",
+    "esbuild": "^0.28.2",
     "eslint": "^10.10.0",
+    "fflate": "^0.8.3",
     "globals": "^16.5.0"
   }
 }

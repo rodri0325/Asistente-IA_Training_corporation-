@@ -6,4 +6,5 @@ if (!process.env.GEMINI_API_KEY?.trim()) {
 }
 crearApp().listen(port, '127.0.0.1', () => {
   console.log(`Asistente de prueba: http://localhost:${port}`);
+  console.log(`Webhook de WhatsApp: http://localhost:${port}/webhook (usa HTTPS público en Meta).`);
 });
