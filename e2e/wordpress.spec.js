@@ -59,9 +59,56 @@ test('WordPress envía una consulta al backend de otro origen y muestra la respu
   expect(response.headers()['access-control-allow-origin']).toBe(siteUrl);
   expect((await response.request().allHeaders()).origin).toBe(siteUrl);
   expect(response.request().postDataJSON()).toEqual({ mensaje: question });
-  await expect(page.locator('.message.assistant').last()).toContainText('Respuesta simulada de la demo: Excel Avanzado cuesta 450000 COP');
+  await expect(page.locator('.message.assistant').last()).toHaveText('AsistenteExcel Avanzado\nPrecio: 450.000 COP.');
   await expect(page.locator('.message.user')).toHaveText(`Tú${question}`);
   await expect(page.locator('#chat-send')).toBeEnabled();
+});
+
+test('consultar un curso desde la portada prepara la pregunta y responde sobre ese curso', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  const dimensions = await page.evaluate(() => ({
+    content: globalThis.document.documentElement.scrollWidth,
+    viewport: globalThis.document.documentElement.clientWidth,
+  }));
+  expect(dimensions.content).toBeLessThanOrEqual(dimensions.viewport);
+  await page.getByRole('link', { name: 'Explorar cursos' }).click();
+  await expect(page).toHaveURL(/#cursos$/);
+  await page.getByRole('button', { name: 'Consultar curso: Python para Análisis de Datos', exact: true }).click();
+  await expect(page.locator('#chat-panel')).toBeVisible();
+  await expect(page.locator('#chat-input')).toBeFocused();
+  await expect(page.locator('#chat-input')).toHaveValue('¿Cuáles son el precio, las modalidades y los requisitos de Python para Análisis de Datos?');
+  await expect(page.locator('.message.user')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Enviar', exact: true }).click();
+  const answer = page.locator('.message.assistant').last();
+  await expect(answer).toContainText('Python para Análisis de Datos');
+  await expect(answer).toContainText('620.000 COP');
+  await expect(answer).toContainText('Modalidades: virtual.');
+  await expect(answer).not.toContainText('Excel');
+});
+
+test('una consulta nueva desde el sitio no reemplaza una solicitud en curso', async ({ page }) => {
+  let completeRequest;
+  const pendingResponse = new Promise((resolve) => { completeRequest = resolve; });
+  await page.route(chatUrl, async (route) => {
+    await pendingResponse;
+    await route.fulfill({ status: 200, contentType: 'application/json',
+      headers: { 'Access-Control-Allow-Origin': siteUrl },
+      body: JSON.stringify({ respuesta: 'Excel Avanzado: 450.000 COP.' }) });
+  });
+  try {
+    await openWidget(page);
+    await page.locator('#chat-input').fill('Precio de Excel Avanzado');
+    await page.getByRole('button', { name: 'Enviar', exact: true }).click();
+    await expect(page.locator('#chat-send')).toBeDisabled();
+    const accepted = await page.evaluate(() => globalThis.TrainingChat.init(globalThis.TrainingChatConfig).setQuestion('Precio de Python'));
+    expect(accepted).toBe(false);
+    await expect(page.locator('#chat-input')).toHaveValue('');
+    await expect(page.locator('.message.user')).toHaveText('TúPrecio de Excel Avanzado');
+    completeRequest();
+    await expect(page.locator('.message.assistant').last()).toContainText('450.000 COP');
+    await expect(page.locator('#chat-send')).toBeEnabled();
+  } finally { completeRequest(); }
 });
 
 test('las respuestas se muestran como texto y no ejecutan HTML', async ({ page }) => {
@@ -97,7 +144,7 @@ test('una conexión fallida restaura la pregunta y permite reintentar', async ({
   await expect(page.locator('#chat-send')).toBeEnabled();
   await page.unroute(chatUrl);
   await page.getByRole('button', { name: 'Enviar', exact: true }).click();
-  await expect(page.locator('.message.assistant').last()).toContainText('Respuesta simulada de la demo');
+  await expect(page.locator('.message.assistant').last()).toContainText('Excel Avanzado');
 });
 
 test('el panel cabe en móvil y devuelve el foco al cerrar con Escape', async ({ page }) => {
@@ -166,6 +213,8 @@ test('desactivar evita cargar el archivo y activar vuelve a mostrar la burbuja',
     await saveSettings(page, { enabled: false });
     await expect(page.locator('#taia_enabled')).not.toBeChecked();
     await expectNoWidget(page);
+    await page.getByRole('button', { name: 'Hacer una pregunta' }).click();
+    await expect(page.locator('#training-feedback')).toContainText('El asistente no está disponible');
     await saveSettings(page);
     await page.goto('/');
     await expect(page.getByRole('button', { name: 'Abrir asistente', exact: true })).toBeVisible();
@@ -180,12 +229,12 @@ test('el chat original y la página independiente conservan el envío', async ({
   await page.getByRole('button', { name: 'Abrir asistente', exact: true }).click();
   await page.locator('#chat-input').fill('Precio de Excel Avanzado');
   await page.getByRole('button', { name: 'Enviar', exact: true }).click();
-  await expect(page.locator('.message.assistant').last()).toContainText('Respuesta simulada de la demo');
+  await expect(page.locator('.message.assistant').last()).toContainText('450.000 COP');
   await page.goto(`${apiUrl}/chat.html`);
   await expect(page.locator('#chat-panel')).toBeVisible();
   await page.locator('#chat-input').fill('Modalidad de Excel Avanzado');
   await page.getByRole('button', { name: 'Enviar', exact: true }).click();
-  await expect(page.locator('.message.assistant').last()).toContainText('Respuesta simulada de la demo');
+  await expect(page.locator('.message.assistant').last()).toContainText('virtual y presencial');
 });
 
 test('sin configuración no se monta y las URL inválidas se rechazan antes de montar', async ({ page }) => {

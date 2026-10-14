@@ -6,6 +6,6 @@ export default [
   js.configs.recommended,
   { files: ['backend/**/*.js', 'tests/**/*.js', 'scripts/**/*.js', 'e2e/**/*.js', '*.config.js'],
     languageOptions: { globals: globals.node } },
-  { files: ['public/**/*.js', 'widget/**/*.js'], languageOptions: { globals: globals.browser } },
+  { files: ['public/**/*.js', 'widget/**/*.js', 'wordpress-demo-theme/**/*.js'], languageOptions: { globals: globals.browser } },
   { rules: { 'no-unused-vars': ['error', { argsIgnorePattern: '^_' }], eqeqeq: 'error' } },
 ];

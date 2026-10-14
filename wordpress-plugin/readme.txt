@@ -1,7 +1,7 @@
 === TRAINING Asistente IA ===
 Requires at least: 6.3
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 0.2.0
 
 Widget del asistente comercial y académico de TRAINING. Requiere el backend externo del proyecto.
 
@@ -60,6 +60,10 @@ No para los visitantes. localhost y 127.0.0.1 apuntan al computador de cada
 visitante. Usa un backend accesible por HTTPS para un sitio público.
 
 == Changelog ==
+
+= 0.2.0 =
+* Presentación del asistente refinada y textos más breves.
+* API setQuestion para abrir consultas desde botones del sitio, sin envío automático.
 
 = 0.1.0 =
 * Primer plugin local: configuración de URL, activación explícita y widget aislado.

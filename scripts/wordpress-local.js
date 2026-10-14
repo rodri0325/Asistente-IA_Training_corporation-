@@ -4,6 +4,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { loadNodeRuntime } from '@php-wasm/node';
 import { bootWordPressAndRequestHandler } from '@wp-playground/wordpress';
 import { crearApp } from '../backend/app.js';
+import { demoFetch } from './demo-responder.js';
 
 const mock = process.argv.includes('--mock');
 const siteUrl = 'http://127.0.0.1:9400';
@@ -34,7 +35,7 @@ const handler = await bootWordPressAndRequestHandler({
   siteUrl, wordPressZip, sqliteIntegrationPluginZip,
   createPhpRuntime: () => loadNodeRuntime('8.3'), maxPhpInstances: 1, cookieStore: false,
   constants: { WP_DEBUG: false, WP_DEBUG_DISPLAY: false, DISABLE_WP_CRON: true,
-    AUTOMATIC_UPDATER_DISABLED: true, WP_HTTP_BLOCK_EXTERNAL: true },
+    AUTOMATIC_UPDATER_DISABLED: true, WP_HTTP_BLOCK_EXTERNAL: true, TRAINING_DEMO_MODE: mock },
 });
 const php = await handler.getPrimaryPhp();
 const pluginRoot = '/wordpress/wp-content/plugins/training-asistente-ia';
@@ -42,7 +43,12 @@ php.mkdirTree(`${pluginRoot}/assets`);
 for (const file of ['training-asistente-ia.php', 'uninstall.php', 'readme.txt', 'assets/training-chat.js']) {
   php.writeFile(`${pluginRoot}/${file}`, await readFile(new URL(`../wordpress-plugin/${file}`, import.meta.url)));
 }
-const modeLabel = mock ? 'Respuestas simuladas para comprobar el plugin. No se consulta Gemini.' : 'Conectado al backend de Gemini. Configura tu clave en .env.';
+const themeRoot = '/wordpress/wp-content/themes/training-demo';
+php.mkdirTree(themeRoot);
+for (const file of ['style.css', 'functions.php', 'index.php', 'theme.js']) {
+  php.writeFile(`${themeRoot}/${file}`, await readFile(new URL(`../wordpress-demo-theme/${file}`, import.meta.url)));
+}
+php.writeFile(`${themeRoot}/catalogo_cursos.json`, await readFile(new URL('../backend/data/catalogo_cursos.json', import.meta.url)));
 const setup = await php.run({ code: `<?php
 require '/wordpress/wp-load.php';
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -50,10 +56,10 @@ $result = activate_plugin('training-asistente-ia/training-asistente-ia.php');
 if (is_wp_error($result)) { throw new Exception($result->get_error_message()); }
 wp_set_password('training-local-demo', 1);
 update_option('taia_settings', array('enabled' => 1, 'api_url' => '${apiUrl}'));
-update_option('blogname', 'TRAINING · WordPress local');
-update_option('blogdescription', '${modeLabel}');
-$page = wp_insert_post(array('post_title' => 'Prueba local del asistente', 'post_status' => 'publish', 'post_type' => 'page',
-  'post_content' => '<h2>Consulta los cursos de TRAINING</h2><p>Abre el asistente de la esquina inferior derecha y pregunta por un curso.</p><p><strong>${modeLabel}</strong></p><p>Este entorno usa un catálogo ficticio. Los cambios de WordPress se reinician al cerrar la demo.</p>'));
+switch_theme('training-demo');
+update_option('blogname', 'TRAINING Corporation');
+update_option('blogdescription', '');
+$page = wp_insert_post(array('post_title' => 'Formación profesional', 'post_status' => 'publish', 'post_type' => 'page', 'post_content' => ''));
 update_option('show_on_front', 'page'); update_option('page_on_front', $page);
 echo 'WordPress ' . get_bloginfo('version') . ' preparado.';
 ` });
@@ -62,9 +68,7 @@ console.log(setup.text);
 
 const app = crearApp({
   allowedOrigins: [siteUrl, process.env.ALLOWED_ORIGINS].filter(Boolean).join(','),
-  ...(mock ? { apiKey: 'demo-simulada', fetchImpl: async () => Response.json({ candidates: [{
-    finishReason: 'STOP', content: { parts: [{ text: 'Respuesta simulada de la demo: Excel Avanzado cuesta 450000 COP según el catálogo ficticio. Esta respuesta comprueba la conexión del plugin; no la generó Gemini.' }] },
-  }] }) } : {}),
+  ...(mock ? { apiKey: 'demo-simulada', fetchImpl: demoFetch } : {}),
 });
 const backend = app.listen(5000, '127.0.0.1');
 await once(backend, 'listening');

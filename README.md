@@ -8,7 +8,7 @@ El catálogo contiene **14 cursos simulados de prueba**: dos del ejemplo del ins
 
 Haz doble clic en **`INICIAR-WORDPRESS.cmd`** y, cuando indique que está preparado, abre **http://127.0.0.1:9400**. Requiere Node.js 22.13 o superior; la primera vez descarga WordPress y su base SQLite. No necesitas cuenta de Meta, PHP ni WordPress instalados. Mantén la ventana abierta; Ctrl+C detiene la prueba.
 
-La demo ejecuta WordPress real 6.8.3 y el plugin, con **respuestas simuladas** y un catálogo ficticio. El sitio se reinicia en cada arranque. Para entrar a `/wp-admin/`, usa `admin` y `training-local-demo` (solo para esta prueba local). La [guía de WordPress](docs/wordpress.md) explica cómo conectar Gemini, cambiar los ajustes e instalar el ZIP en otro WordPress.
+La demo ejecuta WordPress real 6.8.3 y el plugin, con una portada de TRAINING y **respuestas simuladas** basadas en el curso y el dato solicitado del catálogo ficticio. Un único aviso en la cabecera identifica la demostración. Los botones de los cursos preparan una pregunta en el chat sin enviarla automáticamente. El sitio se reinicia en cada arranque. Para entrar a `/wp-admin/`, usa `admin` y `training-local-demo` (solo para esta prueba local). La [guía de WordPress](docs/wordpress.md) explica cómo conectar Gemini, cambiar los ajustes e instalar el ZIP en otro WordPress.
 
 `npm.cmd run package:wordpress` genera `build/training-asistente-ia.zip`. El plugin permite configurar la URL del backend y mostrar u ocultar la burbuja. Los estilos están aislados del tema y las claves permanecen en el backend. No se ha publicado en el sitio de TRAINING.
 
@@ -58,6 +58,8 @@ Los tests usan la API de Gemini **simulada**: verifican contrato HTTP, envío de
 - `backend/data/catalogo_cursos.json`: única fuente de datos de cursos.
 - `public/`: página de prueba, chat independiente y widget flotante.
 - `widget/` y `wordpress-plugin/`: widget empaquetable y plugin con ajustes de WordPress.
+- `wordpress-demo-theme/`: tema de la portada local; no se incluye en el ZIP del plugin ni sustituye el tema de otro sitio.
+- `scripts/demo-responder.js`: simulación por curso e intención, exclusiva del modo de demostración.
 - `scripts/wordpress-local.js`: demo local de WordPress y backend.
 - `tests/` y `e2e/`: pruebas de backend, plugin PHP e integración en navegador; `eslint.config.js`: análisis estático.
 

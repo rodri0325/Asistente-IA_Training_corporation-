@@ -1,16 +1,19 @@
 <section id="chat-panel" class="chat-panel" aria-labelledby="chat-title" hidden>
   <header class="chat-header">
-    <div><h2 id="chat-title">Asistente de cursos</h2><p>Training Corporation · Pruebas</p></div>
+    <div class="chat-heading">
+      <span class="chat-emblem" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" focusable="false"><path d="M5 5h14v11H9l-4 3V5Z"/><path d="M9 9h6M9 12h4"/></svg></span>
+      <div><h2 id="chat-title">Asistente de cursos</h2><p>TRAINING CORPORATION</p></div>
+    </div>
     <button id="chat-close" class="chat-close" type="button" aria-label="Cerrar asistente">×</button>
   </header>
   <div id="chat-messages" class="chat-messages" role="log" aria-label="Conversación" aria-live="polite" aria-relevant="additions" tabindex="0">
-    <p class="message assistant"><strong>Asistente</strong><span>Hola. ¿Sobre qué curso quieres consultar? Pregunta por precios, fechas, requisitos o modalidades.</span></p>
+    <p class="message assistant"><strong>Asistente</strong><span>Hola. ¿Qué curso te interesa? Te ayudo con precios, fechas y requisitos.</span></p>
   </div>
   <p id="chat-status" class="chat-status" role="status" aria-live="polite"></p>
   <form id="chat-form" class="chat-form">
     <label for="chat-input">Tu consulta</label>
     <div class="input-row"><input id="chat-input" name="mensaje" type="text" placeholder="Escribe tu pregunta…" maxlength="1000" required autocomplete="off" aria-describedby="chat-hint"><button id="chat-send" type="submit">Enviar</button></div>
-    <small id="chat-hint">Hasta 1000 caracteres · Datos ficticios</small>
+    <small id="chat-hint">Incluye el nombre del curso.</small>
   </form>
 </section>
-<button id="chat-toggle" class="chat-toggle" type="button" aria-controls="chat-panel" aria-expanded="false"><span data-toggle-label>Abrir asistente</span><span aria-hidden="true">✦</span></button>
+<button id="chat-toggle" class="chat-toggle" type="button" aria-controls="chat-panel" aria-expanded="false"><svg class="toggle-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M5 5h14v11H9l-4 3V5Z"/><path d="M9 9h6M9 12h4"/></svg><span data-toggle-label>Abrir asistente</span></button>

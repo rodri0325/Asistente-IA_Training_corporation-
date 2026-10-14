@@ -21,6 +21,17 @@ export function createChatUI(root, { endpoint }) {
     (open ? input : toggle).focus();
   }
 
+  function setQuestion(text) {
+    if (waiting || typeof text !== 'string') return false;
+    const question = text.trim();
+    if (!question || question.length > 1000) return false;
+    input.value = question;
+    status.textContent = '';
+    if (toggle) setOpen(true);
+    else input.focus();
+    return true;
+  }
+
   if (toggle) {
     toggle.addEventListener('click', () => setOpen(panel.hidden));
     closeButton?.addEventListener('click', () => setOpen(false));
@@ -108,5 +119,5 @@ export function createChatUI(root, { endpoint }) {
     }
   });
 
-  return { open: () => setOpen(true), close: () => setOpen(false) };
+  return { open: () => setOpen(true), close: () => setOpen(false), setQuestion };
 }

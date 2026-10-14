@@ -32,7 +32,9 @@ La primera ejecución descarga WordPress y su integración SQLite desde sus fuen
 
 El arranque compila el widget, instala y activa el plugin, configura su URL y muestra una página de prueba. El servidor de WordPress escucha en `127.0.0.1:9400` y el backend en `127.0.0.1:5000`: solo son accesibles desde este computador. Usa exactamente esas direcciones; no sustituyas `127.0.0.1` por `localhost`.
 
-**`wordpress:demo` utiliza respuestas simuladas**, identificadas como tales en la página y en la respuesta. Sirve para comprobar el plugin y su conexión sin ninguna clave. No consulta Gemini ni valida la exactitud del modelo. No depende de Meta ni de WhatsApp.
+**`wordpress:demo` utiliza respuestas simuladas**, identificadas mediante un único aviso en la cabecera de la página. El simulador consulta el catálogo de ejemplo según el curso y el dato solicitado: precio, modalidad, requisitos, duración o fechas. Sirve para comprobar el plugin y su conexión sin ninguna clave. No consulta Gemini ni valida la exactitud del modelo. No depende de Meta ni de WhatsApp.
+
+La portada usa un tema local de TRAINING con cursos y botones que abren consultas en el asistente. El tema es exclusivo de la demostración: instalar el ZIP del plugin en otro WordPress conserva el diseño de ese sitio.
 
 Mantén la terminal abierta. **Ctrl+C detiene ambos servidores.** El sitio y sus ajustes se crean de nuevo en cada arranque; los cambios hechos en WordPress no persisten. Solo se conservan las descargas de la caché. Estas credenciales son exclusivas de esta demostración en loopback y no deben usarse en un sitio público.
 
@@ -44,7 +46,7 @@ Configura `GEMINI_API_KEY` en el `.env` del repositorio como indica la sección 
 npm.cmd run wordpress:local
 ```
 
-Abre las mismas direcciones anteriores. Este modo carga `.env` y consulta Gemini; la página muestra que está conectado a ese backend. El arranque autoriza automáticamente el origen local de WordPress en CORS. No necesitas ejecutar `npm.cmd start` además de este comando.
+Abre las mismas direcciones anteriores. Este modo carga `.env` y consulta Gemini; conserva un aviso de catálogo de ejemplo mientras no se sustituya por datos comerciales validados. El arranque autoriza automáticamente el origen local de WordPress en CORS. No necesitas ejecutar `npm.cmd start` además de este comando.
 
 La versión 6.8.3 es la versión fija de esta prueba reproducible, no una afirmación sobre la versión actual de WordPress ni la del sitio de TRAINING. No se instala ni modifica ese sitio.
 
