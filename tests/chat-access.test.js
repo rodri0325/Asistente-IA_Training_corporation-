@@ -33,18 +33,18 @@ function preguntar(base, headers = {}) {
 function previa(base, headers = {}) {
   return fetch(`${base}/chat`, {
     method: 'OPTIONS', headers: {
-      Origin: 'https://wordpress.example',
+      Origin: 'https://sitio.example',
       'Access-Control-Request-Method': 'POST',
       'Access-Control-Request-Headers': 'content-type', ...headers,
     },
   });
 }
 
-test('WordPress autorizado recibe respuesta y CORS exacto con origen normalizado', async (t) => {
+test('El sitio autorizado recibe respuesta y CORS exacto con origen normalizado', async (t) => {
   const { base, llamadas } = await iniciar(t, {
-    allowedOrigins: ' HTTPS://WORDPRESS.EXAMPLE:443/, http://localhost:8080 ',
+    allowedOrigins: ' HTTPS://SITIO.EXAMPLE:443/, http://localhost:3000 ',
   });
-  for (const origin of ['https://wordpress.example', 'http://localhost:8080']) {
+  for (const origin of ['https://sitio.example', 'http://localhost:3000']) {
     const response = await preguntar(base, { Origin: origin });
     assert.equal(response.status, 200);
     assert.equal(response.headers.get('access-control-allow-origin'), origin);
@@ -66,13 +66,13 @@ test('La web del backend y las herramientas sin Origin siguen funcionando', asyn
 });
 
 test('Orígenes ajenos, null o inválidos se rechazan antes de leer JSON o llamar a Gemini', async (t) => {
-  const { base, llamadas } = await iniciar(t, { allowedOrigins: 'https://wordpress.example' });
+  const { base, llamadas } = await iniciar(t, { allowedOrigins: 'https://sitio.example' });
   for (const origin of [
-    'https://ajeno.example', 'null', 'https://wordpress.example.evil',
-    'http://wordpress.example', 'https://wordpress.example:444',
-    'https://wordpress.example/path', 'https://user@wordpress.example',
-    'https://wordpress.example\\path',
-    'https://wordpress.example https://ajeno.example',
+    'https://ajeno.example', 'null', 'https://sitio.example.evil',
+    'http://sitio.example', 'https://sitio.example:444',
+    'https://sitio.example/path', 'https://user@sitio.example',
+    'https://sitio.example\\path',
+    'https://sitio.example https://ajeno.example',
   ]) {
     const response = await fetch(`${base}/chat`, {
       method: 'POST', headers: { Origin: origin, 'Content-Type': 'application/json' }, body: '{inválido',
@@ -86,24 +86,24 @@ test('Orígenes ajenos, null o inválidos se rechazan antes de leer JSON o llama
 
 test('OPTIONS permite POST con Content-Type y no consume cuota', async (t) => {
   const { base, llamadas } = await iniciar(t, {
-    allowedOrigins: 'https://wordpress.example', rateLimit: { max: 1 },
+    allowedOrigins: 'https://sitio.example', rateLimit: { max: 1 },
   });
   for (let index = 0; index < 3; index++) {
     const response = await previa(base, { 'Access-Control-Request-Headers': 'Content-Type' });
     assert.equal(response.status, 204);
     assert.equal(await response.text(), '');
-    assert.equal(response.headers.get('access-control-allow-origin'), 'https://wordpress.example');
+    assert.equal(response.headers.get('access-control-allow-origin'), 'https://sitio.example');
     assert.equal(response.headers.get('access-control-allow-methods'), 'POST');
     assert.equal(response.headers.get('access-control-allow-headers'), 'Content-Type');
     assert.match(response.headers.get('vary'), /Access-Control-Request-Headers/);
   }
   assert.equal(llamadas(), 0);
-  assert.equal((await preguntar(base, { Origin: 'https://wordpress.example' })).status, 200);
+  assert.equal((await preguntar(base, { Origin: 'https://sitio.example' })).status, 200);
   assert.equal(llamadas(), 1);
 });
 
 test('Rechaza preflight de otros orígenes, métodos o cabeceras y métodos de chat ajenos', async (t) => {
-  const { base, llamadas } = await iniciar(t, { allowedOrigins: 'https://wordpress.example' });
+  const { base, llamadas } = await iniciar(t, { allowedOrigins: 'https://sitio.example' });
   for (const headers of [
     { Origin: 'https://ajeno.example' },
     { 'Access-Control-Request-Method': 'DELETE' },
@@ -118,18 +118,18 @@ test('Rechaza preflight de otros orígenes, métodos o cabeceras y métodos de c
 test('La cuota usa la IP real y se reinicia al terminar la ventana', async (t) => {
   let time = 1000;
   const { base, llamadas, app } = await iniciar(t, {
-    allowedOrigins: 'https://wordpress.example',
+    allowedOrigins: 'https://sitio.example',
     rateLimit: { max: 2, windowMs: 3000 }, now: () => time,
   });
   assert.equal(app.get('trust proxy'), false);
   assert.equal((await preguntar(base)).status, 200);
   assert.equal((await preguntar(base, { Origin: base })).status, 200);
   const limitada = await preguntar(base, {
-    Origin: 'https://wordpress.example', 'X-Forwarded-For': '198.51.100.2',
+    Origin: 'https://sitio.example', 'X-Forwarded-For': '198.51.100.2',
   });
   assert.equal(limitada.status, 429);
   assert.equal(limitada.headers.get('retry-after'), '3');
-  assert.equal(limitada.headers.get('access-control-allow-origin'), 'https://wordpress.example');
+  assert.equal(limitada.headers.get('access-control-allow-origin'), 'https://sitio.example');
   assert.equal(limitada.headers.get('access-control-expose-headers'), 'Retry-After');
   assert.equal(llamadas(), 2);
   time = 3500;

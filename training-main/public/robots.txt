@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /sistema
+
+Sitemap: https://www.trainingcorporation.com.co/sitemap.xml

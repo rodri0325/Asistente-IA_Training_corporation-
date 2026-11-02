@@ -1,10 +1,9 @@
 import express from 'express';
-import { fileURLToPath } from 'node:url';
-import { crearAsistente, mensajeValido } from './asistente.js';
+import {
+  crearAsistente, historialValido, mensajeValido, requiereWhatsApp, solicitaInscripcion,
+} from './asistente.js';
 import { configuracionWhatsApp, crearWebhookWhatsApp } from './whatsapp.js';
 import { crearAccesoChat } from './chat-access.js';
-
-const publicPath = fileURLToPath(new URL('../public/', import.meta.url));
 
 export function crearApp({
   apiKey = process.env.GEMINI_API_KEY,
@@ -21,7 +20,6 @@ export function crearApp({
   app.use('/webhook', crearWebhookWhatsApp({ config: whatsapp, consultar, fetchImpl }));
   app.all('/chat', crearAccesoChat({ allowedOrigins, rateLimit, now }));
   app.use(express.json({ limit: '8kb' }));
-  app.use(express.static(publicPath));
 
   app.post('/chat', async (req, res) => {
     if (!req.is('application/json')) {
@@ -31,7 +29,17 @@ export function crearApp({
     if (!mensajeValido(mensaje)) {
       return res.status(400).json({ error: 'Escribe una pregunta de 1 a 1000 caracteres.' });
     }
-    const { status, ...body } = await consultar(mensaje);
+    const historial = req.body?.historial;
+    if (!historialValido(historial)) {
+      return res.status(400).json({ error: 'El contexto de la conversación no es válido.' });
+    }
+    const { status, ...body } = await consultar(mensaje, historial);
+    if (status === 200 && requiereWhatsApp(mensaje, body.respuesta)) {
+      body.accion = 'whatsapp';
+      if (solicitaInscripcion(mensaje)) {
+        body.respuesta = '¡Claro! Para ayudarte con la inscripción y confirmar disponibilidad, continúa por WhatsApp con nuestro equipo. Haz clic en el botón de WhatsApp que aparece aquí.';
+      }
+    }
     return res.status(status).json(body);
   });
 

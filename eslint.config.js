@@ -2,10 +2,9 @@ import js from '@eslint/js';
 import globals from 'globals';
 
 export default [
-  { ignores: ['node_modules/**', 'wordpress-plugin/assets/**', 'build/**', '.wordpress-local/**', 'test-results/**'] },
+  { ignores: ['node_modules/**'] },
   js.configs.recommended,
-  { files: ['backend/**/*.js', 'tests/**/*.js', 'scripts/**/*.js', 'e2e/**/*.js', '*.config.js'],
+  { files: ['backend/**/*.js', 'tests/**/*.js', '*.config.js'],
     languageOptions: { globals: globals.node } },
-  { files: ['public/**/*.js', 'widget/**/*.js', 'wordpress-demo-theme/**/*.js'], languageOptions: { globals: globals.browser } },
   { rules: { 'no-unused-vars': ['error', { argsIgnorePattern: '^_' }], eqeqeq: 'error' } },
 ];

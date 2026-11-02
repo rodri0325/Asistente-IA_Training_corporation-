@@ -1,0 +1,297 @@
+@import 'tailwindcss';
+
+/*
+ * Training Corporation — design tokens. See docs/BRAND.md.
+ * Every value is a CSS custom property (var(--color-azul)) and a Tailwind
+ * utility (bg-azul, text-display).
+ */
+@theme static {
+  --color-*: initial;
+
+  /* Brand blues — measured from the logo and the current site */
+  --color-azul: #0072af;        /* logo blue: large fields, buttons, links */
+  --color-azul-hondo: #005a8c;  /* hover/pressed; small blue text on nube */
+  --color-azul-vivo: #1391da;   /* the site's bright blue: ring strokes, large type only (3.4:1 on white) */
+  --color-cielo: #7fd0f5;       /* accents on noche (8.3:1) */
+  --color-noche: #0b2c47;       /* deep brand navy: footer, presence section */
+
+  /* Neutrals, blue-tinted to sit with the logo */
+  --color-tinta: #102a3f;       /* body text, 14.7:1 on white */
+  --color-pizarra: #4a5a67;     /* secondary text, 7.1:1 on white */
+  --color-gris-marca: #8f9392;  /* logo grey: graphics only, never text */
+  --color-niebla: #a9c6dc;      /* secondary text on noche, 8:1 */
+  --color-bruma: #93abc0;       /* tertiary text on noche, 6:1 */
+  --color-nube: #eef4f8;        /* alternate ground */
+  --color-linea: #d5e2eb;       /* rules and field borders on white */
+  --color-blanco: #ffffff;
+  --color-error: #b3261e;
+
+  /* Type: the brand's own families (from the current site's CSS) */
+  --font-display: 'Montserrat', 'Segoe UI', system-ui, sans-serif;
+  --font-sans: 'Source Sans 3', 'Source Sans Pro', 'Segoe UI', system-ui, sans-serif;
+
+  --text-xs: 0.875rem;
+  --text-xs--line-height: 1.45;
+  --text-sm: 1rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1.125rem;
+  --text-base--line-height: 1.6;
+  --text-lg: clamp(1.1875rem, 1.1rem + 0.35vw, 1.375rem);
+  --text-lg--line-height: 1.5;
+  --text-xl: clamp(1.375rem, 1.2rem + 0.7vw, 1.75rem);
+  --text-xl--line-height: 1.25;
+  --text-2xl: clamp(1.75rem, 1.35rem + 1.6vw, 2.75rem);
+  --text-2xl--line-height: 1.12;
+  --text-3xl: clamp(2rem, 1.4rem + 2.4vw, 3.5rem);
+  --text-3xl--line-height: 1.04;
+  --text-display: clamp(2.5rem, 1.4rem + 4.6vw, 5.25rem);
+  --text-display--line-height: 1;
+
+  --tracking-tight: -0.03em;
+  --tracking-snug: -0.015em;
+
+  /* Spacing: Tailwind's 4px step plus fluid section rhythm */
+  --spacing: 0.25rem;
+  --spacing-gutter: clamp(1rem, 0.6rem + 1.6vw, 2rem);
+  --spacing-margin: clamp(1.25rem, 0.4rem + 3.6vw, 4.5rem);
+  --spacing-section: clamp(4rem, 2.4rem + 6.5vw, 9rem);
+  --spacing-section-sm: clamp(2.75rem, 2rem + 3vw, 5rem);
+
+  --container-page: 90rem;
+  --container-measure: 40rem;
+  --container-narrow: 32rem;
+
+  /* Radii: circles belong to the ring motif; controls get a small radius;
+     blue fields and photos in fields stay square. */
+  --radius-control: 6px;
+  --radius-full: 9999px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 150ms;
+  --duration-base: 280ms;
+  --duration-slow: 700ms;
+
+  --breakpoint-xs: 30rem;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --focus-ring: 3px solid var(--color-azul-vivo);
+    --header-h: 4.75rem;
+    /* What sticky bars and anchors clear: the header's real height, measured
+       by SiteHeader; these defaults match it before scripts run. */
+    --header-offset: 5.25rem;
+  }
+
+  @media (width >= 64rem) {
+    :root {
+      --header-offset: 5.8125rem;
+    }
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-offset) + 1rem);
+  }
+
+  body {
+    background: var(--color-blanco);
+    color: var(--color-tinta);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: var(--tracking-snug);
+    text-wrap: balance;
+  }
+
+  p, li {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-azul);
+    color: var(--color-blanco);
+  }
+
+  :focus-visible {
+    outline: var(--focus-ring);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Page frame: centred, max 1440px, fluid side margins. */
+  .frame {
+    width: 100%;
+    max-width: var(--container-page);
+    margin-inline: auto;
+    padding-inline: var(--spacing-margin);
+  }
+
+  /* 12-column grid (4 on phones, 8 on tablets). */
+  .grid-page {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: var(--spacing-gutter);
+  }
+
+  @media (width >= 48rem) {
+    .grid-page { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+  }
+
+  @media (width >= 64rem) {
+    .grid-page { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  }
+
+  .section {
+    padding-block: var(--spacing-section);
+  }
+
+  /* Brand-blue field: the current site's big blue blocks, kept as identity. */
+  .field-azul {
+    background: var(--color-azul);
+    color: var(--color-blanco);
+    --focus-ring: 3px solid var(--color-blanco);
+  }
+
+  .field-noche {
+    background: var(--color-noche);
+    color: var(--color-blanco);
+    --focus-ring: 3px solid var(--color-cielo);
+  }
+
+  .field-nube {
+    background: var(--color-nube);
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-size: var(--text-display);
+    line-height: var(--text-display--line-height);
+    font-weight: 800;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .heading {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl--line-height);
+    font-weight: 800;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .subheading {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    line-height: var(--text-2xl--line-height);
+    font-weight: 700;
+    letter-spacing: var(--tracking-snug);
+  }
+
+  .lede {
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+    max-width: var(--container-measure);
+  }
+
+  .muted {
+    color: var(--color-pizarra);
+  }
+
+  .field-azul .muted { color: var(--color-blanco); opacity: 1; }
+  .field-noche .muted { color: var(--color-niebla); }
+
+  /* Inline text link: underlined; the underline thickens on hover. */
+  .link {
+    color: var(--color-azul);
+    font-weight: 600;
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+    transition: text-decoration-thickness var(--duration-fast) var(--ease-out),
+      color var(--duration-fast) var(--ease-out);
+  }
+
+  .link:hover {
+    color: var(--color-azul-hondo);
+    text-decoration-thickness: 2px;
+  }
+
+  .field-azul .link,
+  .field-noche .link {
+    color: inherit;
+  }
+
+  .prose {
+    max-width: var(--container-measure);
+  }
+
+  .prose > * + * {
+    margin-top: 1em;
+  }
+
+  .prose ul {
+    display: grid;
+    gap: 0.5em;
+    padding-left: 1.25em;
+    list-style: disc;
+  }
+
+  .prose li::marker {
+    color: var(--color-azul-vivo);
+  }
+
+  /* Standard codes (NTC-ISO/IEC 27001) must not break at their hyphens. */
+  .nowrap {
+    white-space: nowrap;
+  }
+
+  .visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}
+
+/* Page change: the old page fades out quickly, the new one fades in while its
+   header animates (PageHeader / HomeHero). Instant under reduced motion. */
+.page-leave-active {
+  transition: opacity 180ms ease-in;
+}
+
+.page-enter-active {
+  transition: opacity 240ms ease-out;
+}
+
+.page-leave-to,
+.page-enter-from {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-leave-active,
+  .page-enter-active {
+    transition: none;
+  }
+}

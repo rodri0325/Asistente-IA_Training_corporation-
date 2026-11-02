@@ -48,6 +48,7 @@ Abre PowerShell **en la carpeta que contiene `package.json`** de esta implementa
 ```powershell
 node --version
 npm.cmd ci
+corepack pnpm --dir training-main install --frozen-lockfile
 if (-not (Test-Path -LiteralPath '.env')) {
     Copy-Item -LiteralPath '.env.example' -Destination '.env'
 }
@@ -60,6 +61,7 @@ Si `.env` ya existía, completa lo que falte sin reemplazar la clave del chat qu
 GEMINI_API_KEY=tu_clave_de_gemini
 GEMINI_MODEL=gemini-3.6-flash
 PORT=5000
+ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
 WHATSAPP_VERIFY_TOKEN=tu_cadena_larga_aleatoria
 WHATSAPP_ACCESS_TOKEN=tu_token_de_meta
 WHATSAPP_PHONE_NUMBER_ID=el_id_del_numero_de_prueba
@@ -75,7 +77,13 @@ Guarda el archivo, cierra el editor e inicia el servidor:
 npm.cmd start
 ```
 
-Deja abierta esta terminal. Abre `http://localhost:5000` y pregunta **«¿Cuánto cuesta Excel Avanzado?»** en el chat web. Resolver primero cualquier error de Gemini permite separar un problema de IA de un problema de WhatsApp. Reinicia el servidor después de editar `.env`.
+Deja abierta esta terminal. En otra terminal, inicia el sitio Nuxt desde la raíz del repositorio:
+
+```powershell
+npm.cmd run dev
+```
+
+Abre `http://localhost:3000` y pregunta **«¿Cuánto cuesta Excel Avanzado?»** en el chat. Resolver primero cualquier error de Gemini permite separar un problema de IA de uno de WhatsApp. Reinicia el backend después de editar `.env`.
 
 ## 5. Crear una URL pública HTTPS con ngrok
 
@@ -100,7 +108,7 @@ Deja abierta esta terminal. Abre `http://localhost:5000` y pregunta **«¿Cuánt
 
 5. Copia la dirección **HTTPS** que muestre ngrok. Por ejemplo, si aparece `https://TU-DOMINIO.ngrok-free.app`, tu callback será **`https://TU-DOMINIO.ngrok-free.app/webhook`**. Sustituye el dominio completo por el tuyo.
 
-`localhost` solo funciona en tu equipo. Meta necesita el endpoint público. El túnel también hace accesible el sitio servido por este backend; úsalo durante la prueba y ciérralo al terminar. Si cambia el dominio al reiniciar, actualiza el callback en Meta. [Instalación, authtoken y publicación de un puerto: ngrok](https://ngrok.com/download/windows?tab=download).
+`localhost` solo funciona en tu equipo. Meta necesita el endpoint público del backend. El túnel publica el puerto 5000; no publica el sitio Nuxt. Si cambia el dominio al reiniciar, actualiza el callback en Meta. [Instalación, authtoken y publicación de un puerto: ngrok](https://ngrok.com/download/windows?tab=download).
 
 ## 6. Configurar el webhook en Meta
 
