@@ -1,0 +1,1176 @@
+[
+  {
+    "id": "curso-001",
+    "nombre": "Diplomado en gestión de activos",
+    "categoria": "Gestión de Activos",
+    "precio": 5200000,
+    "moneda": "COP",
+    "fechas_inicio": "28 de abril al 10 de junio del 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 104,
+    "notas": "Fechas programadas en el cronograma 2026: 28 de abril al 10 de junio del 2026. Horario: Martes, miércoles, jueves de 6pm - 10pm y Sábados 8am -12m. Precio indicado antes de IVA. Mes previsto: Abril. Contenido/malla: Malla curricular Diplomado en Gestión de Activos (Actualizada).xlsx. Brochure Diplomado Gestión de Activos, cohorte 3-2026: indica 88 horas (22 sesiones), modalidad virtual-streaming, fecha por definir y precio público COP 3.200.000 + IVA (USD 1.220); certificación de auditor interno ISO 55001:2024 opcional. El cronograma Excel indica 104 horas y COP 5.200.000 + IVA, por lo que existe una discrepancia entre los archivos. El brochure señala que no se requieren conocimientos previos en gestión de activos."
+  },
+  {
+    "id": "curso-002",
+    "nombre": "Toma de Decisiones en Gestión de Activos basada en Costo, Riesgo y Desempeño (CRD)",
+    "categoria": "Gestión de Activos",
+    "precio": 620000,
+    "moneda": "COP",
+    "fechas_inicio": "8 de mayo del 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 8,
+    "notas": "Fechas programadas en el cronograma 2026: 8 de mayo del 2026. Horario: 8:00 am a 12:00 m. Precio indicado antes de IVA. Mes previsto: Mayo. Contenido/malla: Micro Malla Curricular - Toma de Decisiones en Gestión de Activos basada en CRD (Por Aporbar).xlsx."
+  },
+  {
+    "id": "curso-003",
+    "nombre": "Optimización de Planes de Mantenimiento (PMO) bajo Enfoque de Confiabilidad",
+    "categoria": "Gestión de Activos",
+    "precio": 1120000,
+    "moneda": "COP",
+    "fechas_inicio": "13 y 14 de agosto del 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Fechas programadas en el cronograma 2026: 13 y 14 de agosto del 2026. Horario: Jueves de 8:00 a.m. a 12:00 m.. Precio indicado antes de IVA. Mes previsto: Agosto. Contenido/malla: Por diseñar RCM / RBM Estrategias de mantenimiento Optimización de costos."
+  },
+  {
+    "id": "curso-004",
+    "nombre": "Análisis de Criticidad de Activos para la Gestión del Mantenimiento – Enfoque NORSOK Z-008",
+    "categoria": "Gestión de Activos",
+    "precio": 650000,
+    "moneda": "COP",
+    "fechas_inicio": "02 y 03 de julio del 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 8,
+    "notas": "Fechas programadas en el cronograma 2026: 02 y 03 de julio del 2026. Horario: Jueves y viernes de 8:00 a.m. a 12:00 m.. Precio indicado antes de IVA. Mes previsto: Julio. Contenido/malla: Micro Malla Curricular - Análisis de Criticidad de Activos para la Gestión del Mantenimiento – Enfoque NORSOK Z-008.xlsx."
+  },
+  {
+    "id": "curso-005",
+    "nombre": "Gestión de la Salud de Activos y Vida Remanente bajo Monitoreo Basado en Condición (CBM) – ISO 17359",
+    "categoria": "Gestión de Activos",
+    "precio": 950000,
+    "moneda": "COP",
+    "fechas_inicio": "16 y 17 de septiembre 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 12,
+    "notas": "Fechas programadas en el cronograma 2026: 16 y 17 de septiembre 2026. Horario: Miércoles y jueves de 8:00 a.m. a 12:00 m.. Precio indicado antes de IVA. Mes previsto: Septiembre."
+  },
+  {
+    "id": "curso-006",
+    "nombre": "Formulación y Evaluación de Casos de Negocio en Gestión de Activos",
+    "categoria": "Gestión de Activos",
+    "precio": 620000,
+    "moneda": "COP",
+    "fechas_inicio": "03 de junio del 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 8,
+    "notas": "Fechas programadas en el cronograma 2026: 03 de junio del 2026. Horario: 8:00 am a 12:00 m. Precio indicado antes de IVA. Mes previsto: Junio. Contenido/malla: Micro Malla Curricular - Formulación y Evaluación de Casos de Negocio en Gestión de Activos.xlsx."
+  },
+  {
+    "id": "curso-007",
+    "nombre": "Ingeniería de Confiabilidad Aplicada a la Gestión de Activos",
+    "categoria": "Gestión de Activos",
+    "precio": 1700000,
+    "moneda": "COP",
+    "fechas_inicio": "06 y 07 de octubre 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Fechas programadas en el cronograma 2026: 06 y 07 de octubre 2026. Horario: 6:00 pm a 10:00 pm. Precio indicado antes de IVA. Mes previsto: Octubre. Contenido/malla: Malla Curricular - Ingeniería de Confiabilidad Aplicada a la Gestión de Activos.xlsx."
+  },
+  {
+    "id": "curso-008",
+    "nombre": "Análisis de Causa Raíz (RCA) para la Gestión de Fallas – Enfoque IEC 62740",
+    "categoria": "Gestión de Activos",
+    "precio": 1500000,
+    "moneda": "COP",
+    "fechas_inicio": "16 y 17 de septiembre 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Fechas programadas en el cronograma 2026: 16 y 17 de septiembre 2026. Horario: Miércoles y jueves de 8:00 a.m. a 12:00 m.. Precio indicado antes de IVA. Mes previsto: Septiembre."
+  },
+  {
+    "id": "curso-009",
+    "nombre": "Manejo del cambio: Gestión del Cambio Organizacional en Sistemas de Gestión de Activos",
+    "categoria": "Gestión de Activos",
+    "precio": 480000,
+    "moneda": "COP",
+    "fechas_inicio": "16 y 17 de septiembre 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 6,
+    "notas": "Fechas programadas en el cronograma 2026: 16 y 17 de septiembre 2026. Horario: Miércoles y jueves de 8:00 a.m. a 12:00 m.. Precio indicado antes de IVA. Mes previsto: Septiembre. Contenido/malla: Micro Malla Curricular - Manejo del Cambio Gestión del Cambio Organizacional en Sistemas de Gestión de Activos.xlsx."
+  },
+  {
+    "id": "curso-010",
+    "nombre": "De la Estrategia a la Operación: Implementación del PEGA en Planes Tácticos y Operativos. (Derivación del PEGA)",
+    "categoria": "Gestión de Activos",
+    "precio": 650000,
+    "moneda": "COP",
+    "fechas_inicio": "03 de junio del 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 8,
+    "notas": "Fechas programadas en el cronograma 2026: 03 de junio del 2026. Horario: 8:00 am a 12:00 m. Precio indicado antes de IVA. Mes previsto: Junio. Contenido/malla: Micro Malla Curricular - De la Estrategia a la Operación Implementación del PEGA en Planes Tácticos y Operativos..xlsx."
+  },
+  {
+    "id": "curso-011",
+    "nombre": "Marco Regulatorio y Normativo de los Sistemas de Gestión de Activos",
+    "categoria": "Gestión de Activos",
+    "precio": 500000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 6,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: Micro Malla Curricular - Marco Regulatorio y Normativo de los Sistemas de Gestión de Activos.xlsx."
+  },
+  {
+    "id": "curso-012",
+    "nombre": "Alineación de las Funciones Financieras y No Financieras en la Gestión de Activos – Enfoque ISO 55001 (Gestión del Desempeño de Activos (KPIs & ISO 55001)",
+    "categoria": "Gestión de Activos",
+    "precio": 980000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 12,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: Por diseñar Indicadores técnicos y financieros Seguimiento y control."
+  },
+  {
+    "id": "curso-013",
+    "nombre": "Taxonomía: Estandarización de Datos de Confiabilidad y Mantenimiento – Aplicación de ISO 14224",
+    "categoria": "Gestión de Activos",
+    "precio": 1000000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 12,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-014",
+    "nombre": "Sistemas de Información para la Gestión de Activos: CMMS, EAM y Analítica de Datos. (Gestión de Información y Datos de Activos)",
+    "categoria": "Gestión de Activos",
+    "precio": 1050000,
+    "moneda": "COP",
+    "fechas_inicio": "03 de junio del 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 12,
+    "notas": "Fechas programadas en el cronograma 2026: 03 de junio del 2026. Horario: 8:00 am a 12:00 m. Precio indicado antes de IVA. Mes previsto: Junio. Contenido/malla: Sistemas corporativos unificados Calidad de datos Trazabilidad de activos Relación HDR: iniciativa de sistema corporativo."
+  },
+  {
+    "id": "curso-015",
+    "nombre": "Formación en adquisición y cadena de suministro de activos.",
+    "categoria": "Gestión de Activos",
+    "precio": 1150000,
+    "moneda": "COP",
+    "fechas_inicio": "03, 04, 05 y 06 de noviembre 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Fechas programadas en el cronograma 2026: 03, 04, 05 y 06 de noviembre 2026. Horario: Martes a viernes de 8:00 am a 12 m. Precio indicado antes de IVA. Mes previsto: Noviembre. Contenido/malla: Malla Curricular Formación en adquisición y cadena de suministro de activos.xlsx."
+  },
+  {
+    "id": "curso-016",
+    "nombre": "Contexto Organizacional y Partes Interesadas",
+    "categoria": "Gestión de Activos",
+    "precio": 900000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 12,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: (Análisis de entorno (interno/externo) Gestión de Stakeholders Relación con estrategia y riesgos Relación HDR: Iniciativas 1.1 y 1.2)."
+  },
+  {
+    "id": "curso-017",
+    "nombre": "Liderazgo en Gestión de Activos",
+    "categoria": "Gestión de Activos",
+    "precio": 1150000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: Rol de la alta dirección Cultura organizacional Gobierno de activos Relación HDR: 2.1 Liderazgo."
+  },
+  {
+    "id": "curso-018",
+    "nombre": "Gestión de Riesgos y Oportunidades en Activos",
+    "categoria": "Gestión de Activos",
+    "precio": 1120000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: Integración riesgo-clima (clave en HDR) ISO 31000 aplicado a activos Evaluación de impacto Relación HDR: iniciativas de riesgos climáticos."
+  },
+  {
+    "id": "curso-019",
+    "nombre": "Planificación Estratégica de Activos (SAMP y Planes de Activos)",
+    "categoria": "Gestión de Activos",
+    "precio": 1550000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 20,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: Estratégica Asset Management Plan Alineación con negocio Indicadores de desempeño Relación HDR: visión integral del negocio."
+  },
+  {
+    "id": "curso-020",
+    "nombre": "Desarrollo de Competencias en Gestión de Activos",
+    "categoria": "Gestión de Activos",
+    "precio": 600000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 8,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: Modelo de competencias IAM Brechas organizacionales Planes de formación."
+  },
+  {
+    "id": "curso-021",
+    "nombre": "Cultura Organizacional y Sensibilización en Activos",
+    "categoria": "Gestión de Activos",
+    "precio": 450000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 6,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: Conciencia organizacional Comunicación estratégica Gestión del cambio Relación HDR: sensibilización organizacional."
+  },
+  {
+    "id": "curso-022",
+    "nombre": "Mejora Continua y Optimización del Sistema de Activos",
+    "categoria": "Gestión de Activos",
+    "precio": 900000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 12,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: No conformidades Lecciones aprendidas Innovación."
+  },
+  {
+    "id": "curso-023",
+    "nombre": "Medición de Madurez en Gestión de Activos – IAM",
+    "categoria": "Gestión de Activos",
+    "precio": 1200000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: Modelo IAM Diagnóstico de madurez Roadmap de mejora Valor: Muy alineado con ISO 55001."
+  },
+  {
+    "id": "curso-024",
+    "nombre": "Diplomado en desarrollo sostenible",
+    "categoria": "Sostenibilidad",
+    "precio": 4200000,
+    "moneda": "COP",
+    "fechas_inicio": "2 de junio al 23 de julio del 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 94,
+    "notas": "Fechas programadas en el cronograma 2026: 2 de junio al 23 de julio del 2026. Horario: martes, miércoles y jueves de 6:00 pm a 10:00 pm. Precio indicado antes de IVA. Mes previsto: Junio."
+  },
+  {
+    "id": "curso-025",
+    "nombre": "1. Identificación y evaluación de aspectos ambientales e impactos ambientales bajo perspectiva del ciclo de vida",
+    "categoria": "Sostenibilidad",
+    "precio": 600000,
+    "moneda": "COP",
+    "fechas_inicio": "20 de mayo 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 8,
+    "notas": "Fechas programadas en el cronograma 2026: 20 de mayo 2026. Horario: 8:00 am a 5:00 pm. Precio indicado antes de IVA. Mes previsto: Mayo."
+  },
+  {
+    "id": "curso-026",
+    "nombre": "2. Introducción a la economía circular empresarial",
+    "categoria": "Sostenibilidad",
+    "precio": 580000,
+    "moneda": "COP",
+    "fechas_inicio": "27 y 28 de octubre del 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 8,
+    "notas": "Fechas programadas en el cronograma 2026: 27 y 28 de octubre del 2026. Horario: Martes y miércoles 8:00 am a 12 m. Precio indicado antes de IVA. Mes previsto: Octubre."
+  },
+  {
+    "id": "curso-027",
+    "nombre": "3. Formación en calculo de huella de carbono: Inventario de gases de efecto invernadero.",
+    "categoria": "Sostenibilidad",
+    "precio": 1150000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Precio indicado antes de IVA. Mes previsto: Agosto."
+  },
+  {
+    "id": "curso-028",
+    "nombre": "4. Planes de Reducción y compensación de Emisiones.",
+    "categoria": "Sostenibilidad",
+    "precio": 620000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 8,
+    "notas": "Precio indicado antes de IVA. Mes previsto: Agosto."
+  },
+  {
+    "id": "curso-029",
+    "nombre": "5. Planes de mitigación y adaptación al cambio climático, iniciativas para su aplicación en las empresas.",
+    "categoria": "Sostenibilidad",
+    "precio": 650000,
+    "moneda": "COP",
+    "fechas_inicio": "26 y 27 de agosto del 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 8,
+    "notas": "Fechas programadas en el cronograma 2026: 26 y 27 de agosto del 2026. Horario: Miércoles y jueves de 8:00 am a 12:00 m. Precio indicado antes de IVA. Mes previsto: Agosto."
+  },
+  {
+    "id": "curso-030",
+    "nombre": "Green Marketing",
+    "categoria": "Sostenibilidad",
+    "precio": 580000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 8,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-031",
+    "nombre": "Diseño de productos sostenible y análisis del ciclo de vida",
+    "categoria": "Sostenibilidad",
+    "precio": 620000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 8,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-032",
+    "nombre": "Formación de auditores internos en el Sistema de Gestión Basura Cero bajo los requisitos del Manual de Certificación del SGBC versión 05.",
+    "categoria": "Sostenibilidad",
+    "precio": 2300000,
+    "moneda": "COP",
+    "fechas_inicio": "13 al 23 de octubre de 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 40,
+    "notas": "Fechas programadas en el cronograma 2026: 13 al 23 de octubre de 2026. Horario: Lunes a viernes 6:00 pm a 10:00 pm Sábado 8:00 am a 12 m. Precio indicado antes de IVA. Mes previsto: Octubre."
+  },
+  {
+    "id": "curso-033",
+    "nombre": "Plan de Manejo Ambiental en Proyectos Eléctricos",
+    "categoria": "Sostenibilidad",
+    "precio": 1150000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: PMA en proyectos Cumplimiento normativo Seguimiento ambiental Valor: Obligatorio en proyectos."
+  },
+  {
+    "id": "curso-034",
+    "nombre": "Integración de Energías Renovables al Sistema Eléctrico",
+    "categoria": "Sostenibilidad",
+    "precio": 1450000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 20,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-035",
+    "nombre": "Smart Grids y Digitalización de Redes",
+    "categoria": "Sostenibilidad",
+    "precio": 1300000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-036",
+    "nombre": "Gestión del Riesgo - Interpretación e implementación según la norma ISO 31000 para el Sector Eléctrico",
+    "categoria": "Gestión del Riesgo",
+    "precio": 1650000,
+    "moneda": "COP",
+    "fechas_inicio": "09, 10 y 11 de junio del 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 24,
+    "notas": "Fechas programadas en el cronograma 2026: 09, 10 y 11 de junio del 2026. Horario: Martes, miércoles y jueves de 8:00 am - 5:00 pm. Precio indicado antes de IVA. Mes previsto: Junio."
+  },
+  {
+    "id": "curso-037",
+    "nombre": "Formación en Metodología para la Cuantificación de Riesgos Operativos para el Sector de Energía",
+    "categoria": "Gestión del Riesgo",
+    "precio": 1500000,
+    "moneda": "COP",
+    "fechas_inicio": "18 al 24 de agosto del 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 20,
+    "notas": "Fechas programadas en el cronograma 2026: 18 al 24 de agosto del 2026. Horario: Martes a lunes de 1:00 pm a 5:00 pm. Precio indicado antes de IVA. Mes previsto: Agosto."
+  },
+  {
+    "id": "curso-038",
+    "nombre": "Formación avanzada en Gestión de Riesgos de Seguridad de la Información",
+    "categoria": "Gestión del Riesgo",
+    "precio": 1300000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Precio indicado antes de IVA. Mes previsto: Mayo."
+  },
+  {
+    "id": "curso-039",
+    "nombre": "Gestión del Riesgo para un Sistema de Gestión de Calidad",
+    "categoria": "Gestión del Riesgo",
+    "precio": 600000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 8,
+    "notas": "Precio indicado antes de IVA. Mes previsto: Julio."
+  },
+  {
+    "id": "curso-040",
+    "nombre": "Gestión de Riesgos Operacionales en Centrales Hidroeléctricas",
+    "categoria": "Gestión del Riesgo",
+    "precio": 1550000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 20,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: Riesgos en generación Continuidad operativa Fallas críticas."
+  },
+  {
+    "id": "curso-041",
+    "nombre": "Metodología HAZOP Aplicado a Sistemas Energéticos",
+    "categoria": "Gestión del Riesgo",
+    "precio": 1800000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 20,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: Metodología HAZOP Identificación de desviaciones Aplicación en generación y redes."
+  },
+  {
+    "id": "curso-042",
+    "nombre": "Gestión de Riesgos Operacionales (ISO 31000 aplicado)",
+    "categoria": "Gestión del Riesgo",
+    "precio": 1250000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: identificación y evaluación de riesgos Matrices y controles Integración con activos Valor: Transversal."
+  },
+  {
+    "id": "curso-043",
+    "nombre": "Aspectos claves de la Regulación RETIE",
+    "categoria": "Regulatorio",
+    "precio": 620000,
+    "moneda": "COP",
+    "fechas_inicio": "22 y 23 de julio del 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 8,
+    "notas": "Fechas programadas en el cronograma 2026: 22 y 23 de julio del 2026. Horario: miércoles y jueves de 8:00 a.m. a 12:00 m.. Precio indicado antes de IVA. Mes previsto: Julio."
+  },
+  {
+    "id": "curso-044",
+    "nombre": "Aspectos claves de la RESOLUCIÓN No. 101 039 DE 2024",
+    "categoria": "Regulatorio",
+    "precio": 620000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 8,
+    "notas": "Precio indicado antes de IVA. Mes previsto: Octubre."
+  },
+  {
+    "id": "curso-045",
+    "nombre": "Aspectos claves de la Regulación RETILAP",
+    "categoria": "Regulatorio",
+    "precio": 620000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 8,
+    "notas": "Precio indicado antes de IVA. Mes previsto: Octubre."
+  },
+  {
+    "id": "curso-046",
+    "nombre": "Formación en el Reglamento técnico de instalaciones eléctricas-RETIE para No ingenieros.",
+    "categoria": "Regulatorio",
+    "precio": 1500000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 24,
+    "notas": "Precio indicado antes de IVA. Mes previsto: Octubre."
+  },
+  {
+    "id": "curso-047",
+    "nombre": "Mantenimiento de Redes Eléctricas y Gestión de Servidumbres",
+    "categoria": "Regulatorio",
+    "precio": 1350000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 20,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: Mantenimiento preventivo y correctivo Gestión de servidumbres Normativa y seguridad."
+  },
+  {
+    "id": "curso-048",
+    "nombre": "Desarrollo y Evaluación de Proveedores del Sector Eléctrico",
+    "categoria": "Regulatorio",
+    "precio": 900000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 12,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: Evaluación de desempeño Homologación de proveedores Gestión de contratistas Valor: Tendencia ESG + Supply Chain."
+  },
+  {
+    "id": "curso-049",
+    "nombre": "Regulación del Sector Eléctrico (CREG, LATAM)",
+    "categoria": "Regulatorio",
+    "precio": 1200000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-050",
+    "nombre": "Operación del Sistema Interconectado Nacional (SIN)",
+    "categoria": "Regulatorio",
+    "precio": 1450000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 20,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-051",
+    "nombre": "Gestión Comercial y Pérdidas de Energía",
+    "categoria": "Regulatorio",
+    "precio": 1150000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-052",
+    "nombre": "Ciberseguridad en Sistemas SCADA y Redes Eléctricas",
+    "categoria": "Regulatorio",
+    "precio": 1300000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-053",
+    "nombre": "Seguridad Operacional en Infraestructura Eléctrica",
+    "categoria": "Regulatorio",
+    "precio": 950000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 12,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-054",
+    "nombre": "Planes de Continuidad del Negocio en Energía",
+    "categoria": "Regulatorio",
+    "precio": 950000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 12,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-055",
+    "nombre": "Evolución de la Metodología de Distribución – Transición CREG 015 hacia la nueva regulación (Circular 246)",
+    "categoria": "Regulatorio",
+    "precio": 1300000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: MÓDULO 1. FUNDAMENTOS DE LA REGULACIÓN EN DISTRIBUCIÓN (4 h) MÓDULO 2. ANÁLISIS TÉCNICO DE LA CREG 015 (4 h) MÓDULO 3. EVOLUCIÓN REGULATORIA – CIRCULAR 246 (6 h) MÓDULO 4. IMPACTOS EN LAS EMPRESAS DEL SECTOR (4 h) MÓDULO 5. TALLER PRÁCTICO – ANÁLISIS DE ESCENARIOS (2–4 h)."
+  },
+  {
+    "id": "curso-056",
+    "nombre": "Interventoría de Obras en el Sector Eléctrico (interventoría Integral de Obras Eléctricas)",
+    "categoria": "Interventoría",
+    "precio": 1650000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 24,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: Roles y responsabilidades en interventoría Control técnico, administrativo y financiero Seguimiento a contratos de obra eléctrica Casos sector energía LATAM."
+  },
+  {
+    "id": "curso-057",
+    "nombre": "Gerencia de Proyectos en Infraestructura Eléctrica (PMI)",
+    "categoria": "Interventoría",
+    "precio": 1800000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 24,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-058",
+    "nombre": "Control Financiero y Presupuestal en Obras Eléctricas",
+    "categoria": "Interventoría",
+    "precio": 1200000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-059",
+    "nombre": "Control Técnico en Proyectos de Infraestructura Eléctrica",
+    "categoria": "Interventoría",
+    "precio": 1200000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-060",
+    "nombre": "Control Administrativo y Documental en Interventoría",
+    "categoria": "Interventoría",
+    "precio": 900000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 12,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-061",
+    "nombre": "Marco Normativo de la Interventoría",
+    "categoria": "Interventoría",
+    "precio": 900000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 12,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-062",
+    "nombre": "Interventoría en Líneas de Transmisión",
+    "categoria": "Interventoría",
+    "precio": 1500000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 20,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-063",
+    "nombre": "Interventoría en Subestaciones Eléctricas",
+    "categoria": "Interventoría",
+    "precio": 1550000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 20,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-064",
+    "nombre": "Interventoría en Redes de Distribución",
+    "categoria": "Interventoría",
+    "precio": 1250000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-065",
+    "nombre": "Gestión de Riesgos en Interventoría de Obras",
+    "categoria": "Interventoría",
+    "precio": 1250000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-066",
+    "nombre": "Investigación de accidentes de trabajo",
+    "categoria": "SST",
+    "precio": 300000,
+    "moneda": "COP",
+    "fechas_inicio": "29 de julio del 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 4,
+    "notas": "Fechas programadas en el cronograma 2026: 29 de julio del 2026. Horario: Miércoles de 8:00 a.m. a 12:00 m.. Precio indicado antes de IVA. Mes previsto: Julio."
+  },
+  {
+    "id": "curso-067",
+    "nombre": "Normatividad Básica SST en Colombia",
+    "categoria": "SST",
+    "precio": 300000,
+    "moneda": "COP",
+    "fechas_inicio": "29 de mayo 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 4,
+    "notas": "Fechas programadas en el cronograma 2026: 29 de mayo 2026. Horario: Viernes 8:00 am a 12:00 m. Precio indicado antes de IVA. Mes previsto: Mayo."
+  },
+  {
+    "id": "curso-068",
+    "nombre": "Generalidades del SGSST decreto 1072 y resolución 0312",
+    "categoria": "SST",
+    "precio": 300000,
+    "moneda": "COP",
+    "fechas_inicio": "20 de marzo del 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 4,
+    "notas": "Fechas programadas en el cronograma 2026: 20 de marzo del 2026. Horario: Viernes de 8:00am - 12am. Precio indicado antes de IVA. Mes previsto: Marzo."
+  },
+  {
+    "id": "curso-069",
+    "nombre": "Planeación y ejecución de simulaciones y simulacros",
+    "categoria": "SST",
+    "precio": 550000,
+    "moneda": "COP",
+    "fechas_inicio": "28 y 29 de septiembre del 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 8,
+    "notas": "Fechas programadas en el cronograma 2026: 28 y 29 de septiembre del 2026. Horario: Lunes y martes de 8:00 a.m. a 12:00 m.. Precio indicado antes de IVA. Mes previsto: Septiembre."
+  },
+  {
+    "id": "curso-070",
+    "nombre": "Inspecciones de seguridad",
+    "categoria": "SST",
+    "precio": 300000,
+    "moneda": "COP",
+    "fechas_inicio": "16 de octubre de 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 4,
+    "notas": "Fechas programadas en el cronograma 2026: 16 de octubre de 2026. Horario: Viernes 8:00 am a 12 m. Precio indicado antes de IVA. Mes previsto: Octubre."
+  },
+  {
+    "id": "curso-071",
+    "nombre": "Sensibilización en prevención de Riesgos",
+    "categoria": "SST",
+    "precio": 280000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 4,
+    "notas": "Precio indicado antes de IVA. Mes previsto: Septiembre."
+  },
+  {
+    "id": "curso-072",
+    "nombre": "Planes de emergencias",
+    "categoria": "SST",
+    "precio": 300000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 4,
+    "notas": "Precio indicado antes de IVA. Mes previsto: Septiembre."
+  },
+  {
+    "id": "curso-073",
+    "nombre": "Formación de auditor interno en plan estratégico de seguridad vial - PESV",
+    "categoria": "Seguridad Vial",
+    "precio": 1600000,
+    "moneda": "COP",
+    "fechas_inicio": "01, 02, 03, 08, 09 y 10 de septiembre 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 24,
+    "notas": "Fechas programadas en el cronograma 2026: 01, 02, 03, 08, 09 y 10 de septiembre 2026. Horario: Martes, miércoles y jueves de 6:00 pm a 10:00 pm. Precio indicado antes de IVA. Mes previsto: Septiembre."
+  },
+  {
+    "id": "curso-074",
+    "nombre": "Formación del Sistema de Gestión de la Seguridad Vial bajo la norma NTC-ISO 39001:2014.",
+    "categoria": "Seguridad Vial",
+    "precio": 1650000,
+    "moneda": "COP",
+    "fechas_inicio": "23 al 30 de noviembre del 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 24,
+    "notas": "Fechas programadas en el cronograma 2026: 23 al 30 de noviembre del 2026. Horario: Lunes a viernes de 6:00 pm a 10 pm. Precio indicado antes de IVA. Mes previsto: Noviembre."
+  },
+  {
+    "id": "curso-075",
+    "nombre": "Plan Estratégico de Seguridad Vial - PESV",
+    "categoria": "Seguridad Vial",
+    "precio": 600000,
+    "moneda": "COP",
+    "fechas_inicio": "16 de abril del 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 8,
+    "notas": "Fechas programadas en el cronograma 2026: 16 de abril del 2026. Horario: 8:00 am a 5:00 pm. Precio indicado antes de IVA. Mes previsto: Abril."
+  },
+  {
+    "id": "curso-076",
+    "nombre": "Implementación del Sistema de Gestión de Seguridad de la Información – ISO/IEC 27001:2022",
+    "categoria": "Seguridad de la información",
+    "precio": 2400000,
+    "moneda": "COP",
+    "fechas_inicio": "7, 8,9, 14, 15, 16, 21, 22, 23 y 28 de Abril 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 40,
+    "notas": "Fechas programadas en el cronograma 2026: 7, 8,9, 14, 15, 16, 21, 22, 23 y 28 de Abril 2026. Horario: 8:00 am a 12:00 m. Precio indicado antes de IVA. Mes previsto: Abril."
+  },
+  {
+    "id": "curso-077",
+    "nombre": "Formación en sistema de gestión de seguridad de la información – Interpretación e implicaciones según la norma ISO/IEC 27001 en el sector eléctrico",
+    "categoria": "Seguridad de la información",
+    "precio": 1600000,
+    "moneda": "COP",
+    "fechas_inicio": "10, 11 y 12 de noviembre del 2026",
+    "modalidades": [
+      "virtual"
+    ],
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 24,
+    "notas": "Fechas programadas en el cronograma 2026: 10, 11 y 12 de noviembre del 2026. Horario: Martes a jueves de 8:00 am a 5:00 pm. Precio indicado antes de IVA. Mes previsto: Noviembre."
+  },
+  {
+    "id": "curso-079",
+    "nombre": "Formación en Poda de Arboles para el despeje de Líneas de Distribución de Energía Eléctrica. Basado en los estándares de ANSI Z133 y ANSI A300.",
+    "categoria": "Trabajo altura (Para centro América)",
+    "precio": 2300000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 40,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: Malla Curricular Curso de poda para el despeje de líneas y redes eléctricas TC V4.xlsx."
+  },
+  {
+    "id": "curso-080",
+    "nombre": "Trabajo Seguro en Alturas",
+    "categoria": "Trabajo altura (Para centro América)",
+    "precio": 1900000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 32,
+    "notas": "Precio indicado antes de IVA. Contenido/malla: Es requisito legal en Colombia (Resolución 4272 de 2021) Sin este curso no pueden trabajar."
+  },
+  {
+    "id": "curso-081",
+    "nombre": "Reentrenamiento en Trabajo en Alturas",
+    "categoria": "Trabajo altura (Para centro América)",
+    "precio": 550000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 8,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-082",
+    "nombre": "Coordinador de Trabajo en Alturas",
+    "categoria": "Trabajo altura (Para centro América)",
+    "precio": 3800000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 80,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-083",
+    "nombre": "Trabajo en Alturas en Redes Eléctricas",
+    "categoria": "Trabajo altura (Para centro América)",
+    "precio": 1200000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-084",
+    "nombre": "Rescate en Alturas",
+    "categoria": "Trabajo altura (Para centro América)",
+    "precio": 1250000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 16,
+    "notas": "Precio indicado antes de IVA."
+  },
+  {
+    "id": "curso-085",
+    "nombre": "Gestión del Riesgo en Trabajo en Alturas",
+    "categoria": "Trabajo altura (Para centro América)",
+    "precio": 900000,
+    "moneda": "COP",
+    "fechas_inicio": null,
+    "modalidades": null,
+    "requisitos": null,
+    "duracion_semanas": null,
+    "duracion_horas": 12,
+    "notas": "Precio indicado antes de IVA."
+  }
+]

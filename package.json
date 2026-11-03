@@ -1,0 +1,28 @@
+{
+  "name": "asistente-ia-training",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "npm --prefix training-main run dev",
+    "build": "npm --prefix training-main run build",
+    "website:dev": "npm --prefix training-main run dev",
+    "website:build": "npm --prefix training-main run build",
+    "website:start": "npm --prefix training-main run preview",
+    "website:typecheck": "npm --prefix training-main run typecheck",
+    "start": "node --env-file-if-exists=.env backend/server.js",
+    "test": "node --test tests/*.test.js",
+    "lint": "eslint backend tests eslint.config.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.10.0",
+    "globals": "^16.5.0"
+  }
+}
