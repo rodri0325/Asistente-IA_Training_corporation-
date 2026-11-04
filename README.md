@@ -36,7 +36,9 @@ Abre `http://localhost:3000`. Si editas `.env`, reinicia el backend. El frontend
 
 ## Producción
 
-Configura `NUXT_PUBLIC_CHAT_API_URL` con la URL base HTTPS del backend (sin `/chat`) antes de compilar:
+Para una VM de AWS Academy, puedes servir Nuxt y Express en la misma máquina detrás de Nginx. Deja `NUXT_PUBLIC_CHAT_API_URL` sin configurar: el chat llamará a `/chat` en el mismo origen del sitio. Nginx debe enviar `/chat` al backend en `127.0.0.1:5000` y el resto de rutas a Nuxt en `127.0.0.1:3000`. Consulta [la guía de despliegue en VM](docs/training-main.md#despliegue-en-una-vm-de-aws-academy).
+
+Para desplegar frontend y backend en hosts separados, configura `NUXT_PUBLIC_CHAT_API_URL` con la URL base HTTPS del backend (sin `/chat`) antes de compilar:
 
 ```powershell
 $env:NUXT_PUBLIC_CHAT_API_URL = "https://api.ejemplo.com"
@@ -44,7 +46,7 @@ npm.cmd run build
 npm.cmd run website:start
 ```
 
-En el backend, configura `ALLOWED_ORIGINS` con el origen HTTPS exacto del sitio y `GEMINI_API_KEY` en su entorno privado. El sitio Nuxt y el backend se despliegan por separado. Consulta [la guía del sitio](docs/training-main.md) para más detalles.
+En el backend separado, configura `ALLOWED_ORIGINS` con el origen HTTPS exacto del sitio y `GEMINI_API_KEY` en su entorno privado. Consulta [la guía del sitio](docs/training-main.md) para más detalles.
 
 ## Verificación
 

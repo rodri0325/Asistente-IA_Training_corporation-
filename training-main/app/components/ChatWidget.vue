@@ -37,13 +37,14 @@ function addMessage(author: Message['author'], text: string, kind: Message['kind
 }
 
 function chatEndpoint() {
-  if (typeof chatApiUrl !== 'string' || !chatApiUrl.trim()) {
-    throw new Error('El asistente no está configurado. Inténtalo más tarde.')
+  const configuredUrl = typeof chatApiUrl === 'string' ? chatApiUrl.trim() : ''
+  if (!configuredUrl) {
+    return new URL('/chat', window.location.origin).href
   }
 
   let url: URL
   try {
-    url = new URL(chatApiUrl.trim())
+    url = new URL(configuredUrl)
   } catch {
     throw new Error('La dirección del asistente no es válida. Inténtalo más tarde.')
   }
