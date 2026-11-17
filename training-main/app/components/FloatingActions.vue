@@ -99,14 +99,14 @@ const label = (mode: string, line: string) => `${findMode(mode)?.name ?? ''}, ${
   width: 3.5rem;
   height: 3.5rem;
   border-radius: var(--radius-full);
-  background: var(--color-azul);
+  background: #25d366;
   color: var(--color-blanco);
-  box-shadow: 0 10px 24px -10px rgb(11 44 71 / 0.6);
+  box-shadow: 0 10px 24px -10px rgb(37 211 102 / 0.6);
   transition: transform var(--duration-base) var(--ease-out), background-color var(--duration-fast) var(--ease-out);
 }
 
 .wa:hover {
-  background: var(--color-azul-hondo);
+  background: #1da851;
   transform: translateY(-2px);
 }
 

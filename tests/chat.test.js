@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { once } from 'node:events';
 import { readFileSync } from 'node:fs';
 import { crearApp } from '../backend/app.js';
+import { cargarCatalogo } from '../backend/catalogo.js';
 
 async function iniciar(t, options = {}) {
   const server = crearApp({ model: 'gemini-3.6-flash', ...options }).listen(0, '127.0.0.1');
@@ -25,9 +26,7 @@ function respuestaGemini(texto) {
 }
 
 test('HU1-HU4: contrato HTTP e integración con Gemini simulado', async (t) => {
-  const catalogo = JSON.parse(readFileSync(
-    new URL('../backend/data/catalogo_cursos.json', import.meta.url), 'utf8',
-  ));
+  const catalogo = cargarCatalogo();
   const casos = [
     ['¿Cuánto cuesta Excel Avanzado?', 'Excel Avanzado cuesta 450000 COP.'],
     ['¿Cuándo empieza Excel Avanzado?', '2026-10-05 y 2026-11-10. ¿Cuál te interesa?'],
@@ -49,6 +48,8 @@ test('HU1-HU4: contrato HTTP e integración con Gemini simulado', async (t) => {
           const body = JSON.parse(options.body);
           assert.equal(body.contents[0].parts[0].text, pregunta);
           assert.ok(body.systemInstruction.parts[0].text.includes(JSON.stringify(catalogo)));
+          assert.ok(body.systemInstruction.parts[0].text.includes('"tipo":"curso"'));
+          assert.ok(body.systemInstruction.parts[0].text.includes('"tipo":"servicio"'));
           return respuestaGemini(esperada);
         },
       });
@@ -81,6 +82,23 @@ test('Normaliza la clave y el nombre del modelo antes de llamar a Gemini', async
   });
 });
 
+test('Envía preguntas en otros idiomas a Gemini para responder en el idioma del cliente', async (t) => {
+  const pregunta = 'What is the price of Trabajo Seguro en Alturas?';
+  const baseUrl = await iniciar(t, {
+    apiKey: 'simulada',
+    fetchImpl: (_url, options) => {
+      const body = JSON.parse(options.body);
+      assert.equal(body.contents.at(-1).parts[0].text, pregunta);
+      assert.match(body.systemInstruction.parts[0].text, /Responde en el idioma de la pregunta del cliente/);
+      return respuestaGemini('The course price is listed in the catalog.');
+    },
+  });
+
+  const response = await preguntar(baseUrl, pregunta);
+  assert.equal(response.status, 200);
+  assert.equal((await response.json()).respuesta, 'The course price is listed in the catalog.');
+});
+
 test('Rechaza mensajes vacíos, tipos incorrectos y exceso de longitud antes de llamar a Gemini', async (t) => {
   let llamadas = 0;
   const baseUrl = await iniciar(t, {
@@ -94,7 +112,7 @@ test('Rechaza mensajes vacíos, tipos incorrectos y exceso de longitud antes de 
   assert.equal(llamadas, 0);
 });
 
-test('Responde el precio del curso identificado sin pedir datos personales ni llamar a Gemini', async (t) => {
+test('Informa que el precio del curso no está disponible y ofrece contacto oficial', async (t) => {
   const catalogo = JSON.parse(readFileSync(
     new URL('../backend/data/catalogo_cursos.json', import.meta.url), 'utf8',
   ));
@@ -109,12 +127,31 @@ test('Responde el precio del curso identificado sin pedir datos personales ni ll
   assert.equal(response.status, 200);
   const { respuesta } = await response.json();
   assert.match(respuesta, /¡Claro!/);
-  assert.match(respuesta, /Su precio es/);
+  assert.match(respuesta, /precio es no está disponible en el catálogo/);
   assert.match(respuesta, new RegExp(curso.nombre));
-  assert.match(respuesta, new RegExp(curso.precio.toLocaleString('es-CO')));
-  assert.match(respuesta, new RegExp(curso.moneda));
+  assert.match(respuesta, /3217079467/);
+  assert.match(respuesta, /www\.trainingcorporation\.com\.co/);
+  assert.doesNotMatch(respuesta, /antes de IVA/);
   assert.doesNotMatch(respuesta, /nombre personal|categorías disponibles/i);
   assert.equal(llamadasGemini, 0);
+});
+
+test('Informa que el precio de un servicio no está disponible sin extraerlo de notas', async (t) => {
+  const servicio = JSON.parse(readFileSync(
+    new URL('../backend/data/catalogo_servicios.json', import.meta.url), 'utf8',
+  )).find((item) => item.nombre === 'Sistemas de gestión de activos ISO 55001');
+  const baseUrl = await iniciar(t, {
+    apiKey: 'simulada',
+    fetchImpl: () => assert.fail('La respuesta debe usar el catálogo local'),
+  });
+
+  const response = await preguntar(baseUrl, `¿Cuánto cuesta ${servicio.nombre}?`);
+  assert.equal(response.status, 200);
+  const { respuesta } = await response.json();
+  assert.match(respuesta, /precio es no está disponible en el catálogo/);
+  assert.match(respuesta, /3217079467/);
+  assert.match(respuesta, /www\.trainingcorporation\.com\.co/);
+  assert.doesNotMatch(respuesta, /antes de IVA/);
 });
 
 test('Resuelve una pregunta de seguimiento con el curso del mensaje previo del usuario', async (t) => {
@@ -134,9 +171,9 @@ test('Resuelve una pregunta de seguimiento con el curso del mensaje previo del u
   assert.equal(response.status, 200);
   const { respuesta } = await response.json();
   assert.match(respuesta, /¡Claro!/);
-  assert.match(respuesta, /Su precio es/);
+  assert.match(respuesta, /precio es no está disponible en el catálogo/);
   assert.match(respuesta, new RegExp(curso.nombre));
-  assert.match(respuesta, new RegExp(curso.precio.toLocaleString('es-CO')));
+  assert.match(respuesta, /3217079467/);
 });
 
 test('Marca las solicitudes de inscripción directas y las preguntas sobre cómo inscribirse', async (t) => {
@@ -182,6 +219,95 @@ test('Marca la falta de información para ofrecer contacto con un asesor por Wha
   const response = await preguntar(baseUrl, '¿Cuál es el horario de atención del curso?');
   assert.equal(response.status, 200);
   assert.equal((await response.json()).accion, 'whatsapp');
+});
+
+test('La oferta general presenta cursos, consultoría y auditoría en una lista breve', async (t) => {
+  let llamadasGemini = 0;
+  const baseUrl = await iniciar(t, {
+    apiKey: 'simulada',
+    fetchImpl: () => { llamadasGemini++; throw new Error('No debe consultar Gemini'); },
+  });
+
+  const response = await preguntar(baseUrl, '¿Qué servicios ofrecen?');
+  assert.equal(response.status, 200);
+  const { respuesta } = await response.json();
+  assert.match(respuesta, /- Cursos de formación\s+- Consultoría\s+- Auditoría/);
+  assert.doesNotMatch(respuesta, /Gestión de Activos|Gestión Organizacional|categorías como/i);
+  assert.equal(llamadasGemini, 0);
+});
+
+test('Una pregunta explícita por cursos devuelve los cursos agrupados por categoría', async (t) => {
+  const cursos = JSON.parse(readFileSync(
+    new URL('../backend/data/catalogo_cursos.json', import.meta.url), 'utf8',
+  ));
+  const baseUrl = await iniciar(t, {
+    apiKey: 'simulada',
+    fetchImpl: () => assert.fail('La lista de cursos debe salir del catálogo local'),
+  });
+
+  const response = await preguntar(baseUrl, '¿Qué cursos de formación tienen?');
+  assert.equal(response.status, 200);
+  const { respuesta } = await response.json();
+  assert.match(respuesta, /cursos de formación disponibles en el catálogo/);
+  for (const curso of cursos) assert.ok(respuesta.includes(`- ${curso.nombre}`), curso.nombre);
+  assert.match(respuesta, /Gestión de Activos:/);
+  assert.doesNotMatch(respuesta, /Consultoría\s*\n- Auditoría/);
+});
+
+test('Una consulta general sobre la oferta conserva la respuesta breve', async (t) => {
+  const baseUrl = await iniciar(t, {
+    apiKey: 'simulada',
+    fetchImpl: () => assert.fail('La respuesta general debe ser local'),
+  });
+
+  const response = await preguntar(baseUrl, '¿Qué ofrecen?');
+  assert.equal(response.status, 200);
+  const { respuesta } = await response.json();
+  assert.match(respuesta, /- Cursos de formación\s+- Consultoría\s+- Auditoría/);
+  assert.doesNotMatch(respuesta, /Gestión de Activos|Gestión Organizacional/);
+});
+
+test('Un seguimiento por cursos muestra sus categorías después de una respuesta larga', async (t) => {
+  const baseUrl = await iniciar(t, {
+    apiKey: 'simulada',
+    fetchImpl: () => assert.fail('El seguimiento debe resolverse desde los catálogos'),
+  });
+  const historial = [
+    { role: 'user', text: '¿Qué auditorías ofrecen?' },
+    { role: 'assistant', text: `Auditorías disponibles:\n${'x'.repeat(950)}` },
+  ];
+
+  const response = await preguntar(baseUrl, '¿Y qué cursos ofrecen?', historial);
+  assert.equal(response.status, 200);
+  const { respuesta } = await response.json();
+  assert.match(respuesta, /Tenemos cursos en estas categorías/);
+  assert.match(respuesta, /- Gestión de Activos/);
+  assert.doesNotMatch(respuesta, /TRAINING Corporation ofrece:/);
+});
+
+test('Las preguntas de seguimiento por auditoría y consultoría devuelven servicios del catálogo', async (t) => {
+  const baseUrl = await iniciar(t, {
+    apiKey: 'simulada',
+    fetchImpl: () => assert.fail('Las consultas por tipo de servicio deben resolverse desde el catálogo'),
+  });
+  const historial = [
+    { role: 'user', text: '¿Qué cursos ofrecen?' },
+    { role: 'assistant', text: 'Ofrecemos cursos de formación.' },
+  ];
+
+  const auditorias = await preguntar(baseUrl, '¿Qué auditorías ofrecen?', historial);
+  assert.equal(auditorias.status, 200);
+  const respuestaAuditorias = (await auditorias.json()).respuesta;
+  assert.match(respuestaAuditorias, /auditorías y evaluaciones incluyen/i);
+  assert.match(respuestaAuditorias, /Auditorías a proyectos aprobados por la Unidad de Planeación Minero Energética/);
+  assert.doesNotMatch(respuestaAuditorias, /TRAINING Corporation ofrece:/);
+
+  const consultorias = await preguntar(baseUrl, '¿Y qué consultorías ofrecen?', historial);
+  assert.equal(consultorias.status, 200);
+  const respuestaConsultorias = (await consultorias.json()).respuesta;
+  assert.match(respuestaConsultorias, /Consultoría para diseñar, documentar y alinear el Plan Estratégico de Gestión de Activos/);
+  assert.match(respuestaConsultorias, /Asesoría en lineamientos del SST/);
+  assert.doesNotMatch(respuestaConsultorias, /TRAINING Corporation ofrece:/);
 });
 
 test('No muestra WhatsApp para respuestas rutinarias ni confunde matrícula con otra palabra', async (t) => {
@@ -336,17 +462,35 @@ test('Las instrucciones priorizan categorías y limitan cursos a la categoría s
     fetchImpl: (_url, options) => {
       const { systemInstruction } = JSON.parse(options.body);
       const instrucciones = systemInstruction.parts[0].text;
-      assert.match(instrucciones, /tono cálido, humano, cercano y profesional/);
-      assert.match(instrucciones, /Habla de tú/);
-      assert.match(instrucciones, /sin presionar ni insistir en la venta/);
-      assert.match(instrucciones, /invítale a continuar por WhatsApp con un asesor/);
+      assert.match(instrucciones, /Eres Trainy, el asistente virtual de Training Corporation S\.A\.S\./);
+      assert.match(instrucciones, /profesional,\s+cercana y consultiva/);
+      assert.match(instrucciones, /Trata al cliente de «usted»/);
+      assert.match(instrucciones, /salvo que haya usado «tú» primero/);
+      assert.match(instrucciones, /No compares a Training Corporation con otras empresas/);
+      assert.match(instrucciones, /No emitas dictámenes legales o regulatorios/);
+      assert.match(instrucciones, /No prometas certificación ni cumplimiento\s+normativo/);
+      assert.match(instrucciones, /cópialas exactamente como aparecen en el catálogo/);
+      assert.match(instrucciones, /remite al contacto oficial/);
+      assert.match(instrucciones, /catálogo no contiene el campo precio/);
+      assert.match(instrucciones, /No infieras ni extraigas precios desde notas/);
+      assert.match(instrucciones, /preséntalos como una lista Markdown/);
+      assert.match(instrucciones, /cada línea iniciada\s+con "- "/);
       assert.match(instrucciones, /si quiere inscribirse o\s+matricularse/i);
-      assert.match(instrucciones, /muestra primero solo la lista de categorías/);
-      assert.match(instrucciones, /No enumeres cursos en esta primera respuesta/);
+      assert.match(instrucciones, /menciona brevemente solo los tipos de oferta/);
+      assert.match(instrucciones, /No enumeres categorías ni ofertas específicas/);
+      assert.match(instrucciones, /lista los nombres de los\s+cursos del catálogo agrupados por categoría/);
       assert.match(instrucciones, /lista únicamente los cursos de esa\s+categoría/);
-      assert.match(instrucciones, /Para consultas generales, sigue primero el flujo de categorías/);
+      assert.match(instrucciones, /Si pregunta por las categorías disponibles/);
       assert.match(instrucciones, /Seguridad de la información/);
       assert.match(instrucciones, /Trabajo altura \(Para centro América\)/);
+      assert.match(instrucciones, /no inventes ni cambies datos/i);
+      assert.match(instrucciones, /3217079467/);
+      assert.match(instrucciones, /www\.trainingcorporation\.com\.co/);
+      assert.match(instrucciones, /Responde en el idioma de la pregunta/);
+      assert.match(instrucciones, /haz una sola pregunta aclaratoria/i);
+      assert.match(instrucciones, /No ofrezcas fechas de inicio anteriores/);
+      assert.match(instrucciones, /tipo.*curso.*servicio/s);
+      assert.ok(instrucciones.indexOf('Instrucciones del sistema:') < instrucciones.indexOf('Catálogo unido en JSON compacto:'));
       return respuestaGemini('Elige una categoría.');
     },
   });
@@ -377,10 +521,25 @@ test('Encuentra los cursos de Trabajo altura usando el nombre corto de la catego
     for (const curso of cursos) assert.ok(respuesta.includes(curso.nombre), curso.nombre);
     assert.equal(respuesta.split('\n').filter((line) => line.startsWith('- ')).length, cursos.length);
     assert.match(respuesta, /¡Claro!/);
-    assert.match(respuesta, /¿Cuál te llama la atención\?/);
-    assert.match(respuesta, /Con gusto te cuento/);
+    assert.match(respuesta, /¿Cuál le interesa\?/);
+    assert.match(respuesta, /Con gusto le cuento/);
   }
   assert.equal(llamadasGemini, 0);
+});
+
+test('Mantiene el trato formal hasta que el cliente usa tuteo', async (t) => {
+  const curso = JSON.parse(readFileSync(
+    new URL('../backend/data/catalogo_cursos.json', import.meta.url), 'utf8',
+  )).find((item) => item.categoria === 'Trabajo altura (Para centro América)');
+  const baseUrl = await iniciar(t, { apiKey: 'simulada' });
+
+  const formal = await preguntar(baseUrl, `¿Cuánto cuesta ${curso.nombre}?`);
+  assert.equal(formal.status, 200);
+  assert.match((await formal.json()).respuesta, /¿Desea que le ayude/);
+
+  const informal = await preguntar(baseUrl, '¿Me puedes mostrar cursos de la categoría trabajo altura?');
+  assert.equal(informal.status, 200);
+  assert.match((await informal.json()).respuesta, /¿Cuál te llama la atención\?/);
 });
 
 test('El backend no sirve archivos públicos ni expone archivos privados', async (t) => {

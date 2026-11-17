@@ -3,11 +3,15 @@ import { company } from '~/data/company'
 
 interface Message {
   id: number
-  author: 'Tú' | 'Asistente' | 'Error'
+  author: 'Tú' | 'Trainy' | 'Error'
   text: string
   kind: 'user' | 'assistant' | 'error'
   whatsapp?: boolean
 }
+
+type MessageBlock =
+  | { type: 'paragraph'; text: string }
+  | { type: 'list'; ordered: boolean; items: string[] }
 
 const { public: { chatApiUrl } } = useRuntimeConfig()
 const launcher = useTemplateRef<HTMLButtonElement>('launcher')
@@ -20,8 +24,8 @@ const status = ref('')
 const messages = ref<Message[]>([
   {
     id: 0,
-    author: 'Asistente',
-    text: '¡Hola! Con gusto te ayudo a encontrar el curso ideal. Puedo mostrarte las categorías o resolver tus dudas sobre precios, fechas, modalidades y requisitos. ¿Qué estás buscando?',
+    author: 'Trainy',
+    text: '¡Hola! Soy Trainy, el asistente virtual de Training Corporation S.A.S. Puedo orientarle sobre nuestros cursos y servicios, como consultoría y auditoría. ¿Qué necesita conocer?',
     kind: 'assistant',
   },
 ])
@@ -29,11 +33,73 @@ let nextMessageId = 1
 let activeRequest: AbortController | undefined
 let isDisposed = false
 
+function formatMessage(text: string): MessageBlock[] {
+  const blocks: MessageBlock[] = []
+  let paragraph: string[] = []
+  let list: { ordered: boolean; items: string[] } | undefined
+
+  function flushParagraph() {
+    if (paragraph.length) {
+      blocks.push({ type: 'paragraph', text: paragraph.join(' ') })
+      paragraph = []
+    }
+  }
+
+  function flushList() {
+    if (list) {
+      blocks.push({ type: 'list', ...list })
+      list = undefined
+    }
+  }
+
+  for (const line of text.split(/\r?\n/u)) {
+    const item = line.match(/^\s*(?:(-|\*|•)\s+|(\d+)[.)]\s+)(.+?)\s*$/u)
+    const itemText = item?.[3]
+    if (item && itemText !== undefined) {
+      flushParagraph()
+      const ordered = Boolean(item[2])
+      if (!list || list.ordered !== ordered) {
+        flushList()
+        list = { ordered, items: [] }
+      }
+      list.items.push(itemText)
+    } else if (line.trim()) {
+      flushList()
+      paragraph.push(line.trim())
+    } else {
+      flushParagraph()
+      flushList()
+    }
+  }
+
+  flushParagraph()
+  flushList()
+  return blocks
+}
+
 function addMessage(author: Message['author'], text: string, kind: Message['kind'], whatsapp = false) {
   messages.value.push({ id: nextMessageId++, author, text, kind, whatsapp })
   nextTick(() => {
     if (messageList.value) messageList.value.scrollTop = messageList.value.scrollHeight
   })
+}
+
+function historialParaAPI() {
+  let caracteresDisponibles = 4000
+  return messages.value
+    .filter((message) => message.kind === 'user' || message.kind === 'assistant')
+    .slice(-8)
+    .reverse()
+    .flatMap((message) => {
+      if (caracteresDisponibles === 0) return []
+      const text = message.text.slice(0, Math.min(1000, caracteresDisponibles))
+      caracteresDisponibles -= text.length
+      return [{
+        role: message.kind === 'user' ? 'user' as const : 'assistant' as const,
+        text,
+      }]
+    })
+    .reverse()
 }
 
 function chatEndpoint() {
@@ -78,13 +144,7 @@ async function submitQuestion() {
   isWaiting.value = true
   question.value = ''
   status.value = 'Consultando…'
-  const history = messages.value
-    .filter((message) => message.kind === 'user' || message.kind === 'assistant')
-    .slice(-8)
-    .map((message) => ({
-      role: message.kind === 'user' ? 'user' as const : 'assistant' as const,
-      text: message.text,
-    }))
+  const history = historialParaAPI()
   addMessage('Tú', text, 'user')
 
   const request = new AbortController()
@@ -119,7 +179,7 @@ async function submitQuestion() {
       throw new Error('El asistente devolvió una respuesta vacía. Inténtalo de nuevo.')
     }
 
-    if (!isDisposed) addMessage('Asistente', reply, 'assistant', whatsapp)
+    if (!isDisposed) addMessage('Trainy', reply, 'assistant', whatsapp)
   } catch (error) {
     if (isDisposed) return
     const detail = error instanceof Error && error.name === 'AbortError'
@@ -185,7 +245,7 @@ onBeforeUnmount(() => {
               </svg>
             </span>
             <div>
-              <h2 id="chat-widget-title">Asistente de cursos</h2>
+              <h2 id="chat-widget-title">Trainy, asistente virtual</h2>
               <p>TRAINING CORPORATION</p>
             </div>
           </div>
@@ -200,14 +260,25 @@ onBeforeUnmount(() => {
         </header>
 
         <div ref="messageList" class="chat-widget__messages" role="log" aria-label="Conversación" aria-live="polite" aria-relevant="additions">
-          <p
+          <div
             v-for="message in messages"
             :key="message.id"
             class="chat-widget__message"
             :class="`chat-widget__message--${message.kind}`"
           >
             <strong>{{ message.author }}</strong>
-            <span>{{ message.text }}</span>
+            <template v-if="message.kind === 'assistant'">
+              <template v-for="(block, index) in formatMessage(message.text)" :key="index">
+                <p v-if="block.type === 'paragraph'" class="chat-widget__paragraph">{{ block.text }}</p>
+                <ul v-else-if="!block.ordered" class="chat-widget__list">
+                  <li v-for="(item, itemIndex) in block.items" :key="itemIndex">{{ item }}</li>
+                </ul>
+                <ol v-else class="chat-widget__list">
+                  <li v-for="(item, itemIndex) in block.items" :key="itemIndex">{{ item }}</li>
+                </ol>
+              </template>
+            </template>
+            <span v-else>{{ message.text }}</span>
             <a
               v-if="message.whatsapp"
               :href="company.whatsapp.href"
@@ -217,7 +288,7 @@ onBeforeUnmount(() => {
             >
               Escribir por WhatsApp · {{ company.whatsapp.display }}
             </a>
-          </p>
+          </div>
         </div>
 
         <p class="chat-widget__status" role="status" aria-live="polite">{{ status }}</p>
@@ -239,7 +310,7 @@ onBeforeUnmount(() => {
             >
             <button type="submit" :disabled="isWaiting">Enviar</button>
           </div>
-          <small id="chat-widget-hint">Incluye el nombre del curso.</small>
+          <small id="chat-widget-hint">Si consulta por una oferta específica, indique su nombre.</small>
         </form>
       </section>
     </Transition>
@@ -250,12 +321,16 @@ onBeforeUnmount(() => {
       class="chat-widget__launcher"
       :aria-expanded="isOpen"
       aria-controls="chat-widget-panel"
-      :aria-label="isOpen ? 'Cerrar asistente de cursos' : 'Abrir asistente de cursos'"
+      :aria-label="isOpen ? 'Cerrar asistente virtual Trainy' : 'Abrir asistente virtual Trainy'"
       @click="isOpen ? closeChat() : openChat()"
     >
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-        <path d="M5 5h14v11H9l-4 3V5Z" />
-        <path d="M9 9h6M9 12h4" />
+        <path d="M12 4v2.5M4 11H2.5v4H4M20 11h1.5v4H20" />
+        <rect x="4" y="6.5" width="16" height="14" rx="3" />
+        <circle cx="9" cy="12" r="1" fill="currentColor" stroke="none" />
+        <circle cx="15" cy="12" r="1" fill="currentColor" stroke="none" />
+        <path d="M9.5 16h5" />
+        <circle cx="12" cy="2.5" r="1" fill="currentColor" stroke="none" />
       </svg>
     </button>
   </div>
@@ -267,7 +342,7 @@ onBeforeUnmount(() => {
   right: max(1rem, env(safe-area-inset-right));
   bottom: calc(max(1rem, env(safe-area-inset-bottom)) + 5rem + 0.75rem);
   z-index: 31;
-  width: min(390px, calc(100vw - 2rem));
+  width: min(480px, calc(100vw - 2rem));
   color: var(--color-tinta);
   font-family: var(--font-sans);
   font-size: var(--text-sm);
@@ -329,7 +404,7 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: min(540px, calc(100dvh - 12rem));
+  height: min(700px, calc(100dvh - 11rem));
   overflow: hidden;
   border: 1px solid var(--color-linea);
   border-radius: var(--radius-control);
@@ -449,8 +524,22 @@ onBeforeUnmount(() => {
   font-weight: 700;
 }
 
-.chat-widget__message span {
+.chat-widget__message > span {
   white-space: pre-wrap;
+}
+
+.chat-widget__paragraph {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.chat-widget__list {
+  margin: 0.35rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.chat-widget__list li + li {
+  margin-top: 0.2rem;
 }
 
 .chat-widget__whatsapp {

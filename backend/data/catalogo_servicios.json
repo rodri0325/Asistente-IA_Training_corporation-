@@ -1,0 +1,560 @@
+[
+  {
+    "id": "servicio-001",
+    "nombre": "Sistemas de gestión de activos ISO 55001",
+    "categoria": "Gestión Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 1, sección «Asesoría y Consultoría en Gestión Organizacional». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-002",
+    "nombre": "Sistemas de gestión en calidad ISO 9001",
+    "categoria": "Gestión Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 1, sección «Asesoría y Consultoría en Gestión Organizacional». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-003",
+    "nombre": "Sistemas de gestión ambiental ISO 14001",
+    "categoria": "Gestión Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 1, sección «Asesoría y Consultoría en Gestión Organizacional». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-004",
+    "nombre": "Sistemas de gestión de la seguridad y salud en el trabajo ISO 45001",
+    "categoria": "Gestión Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 1, sección «Asesoría y Consultoría en Gestión Organizacional». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-005",
+    "nombre": "Sistemas de gestión del riesgo ISO 31000",
+    "categoria": "Gestión Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 1, sección «Asesoría y Consultoría en Gestión Organizacional». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-006",
+    "nombre": "Sistemas de gestión en eficiencia energética en la ISO 50001",
+    "categoria": "Gestión Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 1, sección «Asesoría y Consultoría en Gestión Organizacional». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-007",
+    "nombre": "Requisitos generales para la competencia de los laboratorios de ensayo y calibración ISO/IEC 17025",
+    "categoria": "Gestión Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 1, sección «Asesoría y Consultoría en Gestión Organizacional». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-008",
+    "nombre": "Acompañamiento y asesoría a los procesos de Generación, Transmisión, Distribución y Comercialización de energía frente a los sistemas de gestión",
+    "categoria": "Gestión Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 1, sección «Asesoría y Consultoría en Gestión Organizacional». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-009",
+    "nombre": "Riesgos operacionales en el sector minero energético",
+    "categoria": "Gestión Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 1, sección «Asesoría y Consultoría en Gestión Organizacional». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-010",
+    "nombre": "Modelo integrado de planeación y control Decreto 1499 del 2017 y MECI",
+    "categoria": "Gestión Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 1, sección «Asesoría y Consultoría en Gestión Organizacional». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-011",
+    "nombre": "Gestión de la calidad. Satisfacción del cliente para el tratamiento de las quejas ISO 10002",
+    "categoria": "Gestión Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 1, sección «Asesoría y Consultoría en Gestión Organizacional». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-012",
+    "nombre": "Gestión para el éxito de una organización ISO 9004",
+    "categoria": "Gestión Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 1, sección «Asesoría y Consultoría en Gestión Organizacional». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-013",
+    "nombre": "Responsabilidad social ISO 26000",
+    "categoria": "Gestión Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 1, sección «Asesoría y Consultoría en Gestión Organizacional». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-014",
+    "nombre": "Gestión regulatoria para el sector eléctrico colombiano",
+    "categoria": "Gestión Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 1, sección «Asesoría y Consultoría en Gestión Organizacional». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-015",
+    "nombre": "Diseño de la plataforma estratégica organizacional y cuadro de mando integral CMI",
+    "categoria": "Gestión Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 1, sección «Asesoría y Consultoría en Gestión Organizacional». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-016",
+    "nombre": "Estandarización de procesos de generación fotovoltaica",
+    "categoria": "Gestión Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 1, sección «Asesoría y Consultoría en Gestión Organizacional». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-017",
+    "nombre": "Reglamento técnico de instalaciones eléctricas RETIE y alumbrado público RETILAP",
+    "categoria": "Gestión Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 1, sección «Asesoría y Consultoría en Gestión Organizacional». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-018",
+    "nombre": "Interventorías técnicas y administrativas en el sector minero energético",
+    "categoria": "Gestión Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 1, sección «Asesoría y Consultoría en Gestión Organizacional». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-019",
+    "nombre": "Diseño, administración y ejecución SG-SST Decreto 1072 del 2015 y Resolución 0312 del 2019",
+    "categoria": "SST",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 2, sección «Asesoría y Consultoría en Sistemas de Gestión de Seguridad y Salud en el Trabajo». Encabezado de la sección: Resolución 2025060009786 Dirección Seccional de Salud de Antioquia (DSSA). El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-020",
+    "nombre": "Asesoría en lineamientos del SST en los procesos de Generación, Transmisión, Distribución y Comercialización de energía eléctrica. Resolución 5018 del 2019",
+    "categoria": "SST",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 2, sección «Asesoría y Consultoría en Sistemas de Gestión de Seguridad y Salud en el Trabajo». Encabezado de la sección: Resolución 2025060009786 Dirección Seccional de Salud de Antioquia (DSSA). El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-021",
+    "nombre": "Asesorías en higiene y seguridad industrial",
+    "categoria": "SST",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 2, sección «Asesoría y Consultoría en Sistemas de Gestión de Seguridad y Salud en el Trabajo». Encabezado de la sección: Resolución 2025060009786 Dirección Seccional de Salud de Antioquia (DSSA). El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-022",
+    "nombre": "Sistemas de gestión de la seguridad y salud en el trabajo ISO 45001",
+    "categoria": "SST",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 2, sección «Asesoría y Consultoría en Sistemas de Gestión de Seguridad y Salud en el Trabajo». Encabezado de la sección: Resolución 2025060009786 Dirección Seccional de Salud de Antioquia (DSSA). El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-023",
+    "nombre": "Comité paritario COPASST, vigía en SST, comité de convivencia laboral, brigadas de emergencias y grupos de apoyo",
+    "categoria": "SST",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 2, sección «Asesoría y Consultoría en Sistemas de Gestión de Seguridad y Salud en el Trabajo». Encabezado de la sección: Resolución 2025060009786 Dirección Seccional de Salud de Antioquia (DSSA). El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-024",
+    "nombre": "Identificación de peligros y evaluación de riesgos",
+    "categoria": "SST",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 2, sección «Asesoría y Consultoría en Sistemas de Gestión de Seguridad y Salud en el Trabajo». Encabezado de la sección: Resolución 2025060009786 Dirección Seccional de Salud de Antioquia (DSSA). El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-025",
+    "nombre": "Revisión y actualización de requisitos legales del SG-SST",
+    "categoria": "SST",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 2, sección «Asesoría y Consultoría en Sistemas de Gestión de Seguridad y Salud en el Trabajo». Encabezado de la sección: Resolución 2025060009786 Dirección Seccional de Salud de Antioquia (DSSA). El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-026",
+    "nombre": "Inspección de seguridad",
+    "categoria": "SST",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 2, sección «Asesoría y Consultoría en Sistemas de Gestión de Seguridad y Salud en el Trabajo». Encabezado de la sección: Resolución 2025060009786 Dirección Seccional de Salud de Antioquia (DSSA). El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-027",
+    "nombre": "Plan de gestión de riesgo de desastres para empresas públicas y privadas (PGREEP)",
+    "categoria": "SST",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 2, sección «Asesoría y Consultoría en Sistemas de Gestión de Seguridad y Salud en el Trabajo». Encabezado de la sección: Resolución 2025060009786 Dirección Seccional de Salud de Antioquia (DSSA). El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-028",
+    "nombre": "Estructuración, medición y análisis de los programas de vigilancia epidemiológica, orden y aseo, equipo de protección personal, y prevención para el control total de pérdidas, entre otros",
+    "categoria": "SST",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 2, sección «Asesoría y Consultoría en Sistemas de Gestión de Seguridad y Salud en el Trabajo». Encabezado de la sección: Resolución 2025060009786 Dirección Seccional de Salud de Antioquia (DSSA). El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-029",
+    "nombre": "Reglamento de higiene SST",
+    "categoria": "SST",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 2, sección «Asesoría y Consultoría en Sistemas de Gestión de Seguridad y Salud en el Trabajo». Encabezado de la sección: Resolución 2025060009786 Dirección Seccional de Salud de Antioquia (DSSA). El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-030",
+    "nombre": "Primeros auxilios (APH)",
+    "categoria": "SST",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 2, sección «Asesoría y Consultoría en Sistemas de Gestión de Seguridad y Salud en el Trabajo». Encabezado de la sección: Resolución 2025060009786 Dirección Seccional de Salud de Antioquia (DSSA). El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-031",
+    "nombre": "Investigación de incidentes y accidentes de trabajo y enfermedad laboral",
+    "categoria": "SST",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 2, sección «Asesoría y Consultoría en Sistemas de Gestión de Seguridad y Salud en el Trabajo». Encabezado de la sección: Resolución 2025060009786 Dirección Seccional de Salud de Antioquia (DSSA). El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-032",
+    "nombre": "Psicología en SST",
+    "categoria": "SST",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 2, sección «Asesoría y Consultoría en Sistemas de Gestión de Seguridad y Salud en el Trabajo». Encabezado de la sección: Resolución 2025060009786 Dirección Seccional de Salud de Antioquia (DSSA). El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-033",
+    "nombre": "Implementación del Sistema Globalmente Armonizado (SGA)",
+    "categoria": "SST",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 2, sección «Asesoría y Consultoría en Sistemas de Gestión de Seguridad y Salud en el Trabajo». Encabezado de la sección: Resolución 2025060009786 Dirección Seccional de Salud de Antioquia (DSSA). El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-034",
+    "nombre": "Plan estratégico de seguridad vial (PESV)",
+    "categoria": "SST",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 2, sección «Asesoría y Consultoría en Sistemas de Gestión de Seguridad y Salud en el Trabajo». Encabezado de la sección: Resolución 2025060009786 Dirección Seccional de Salud de Antioquia (DSSA). El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-035",
+    "nombre": "Diseño e implementación de la norma ISO 14001 Sistemas de gestión ambiental. Requisitos con orientación para su uso",
+    "categoria": "Gestión Ambiental",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 3, sección «Asesoría y Consultoría en Gestión Ambiental». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-036",
+    "nombre": "Gases de Efecto Invernadero (GEI) bajo la norma ISO 14064",
+    "categoria": "Gestión Ambiental",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 3, sección «Asesoría y Consultoría en Gestión Ambiental». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-037",
+    "nombre": "Identificación y gestión de aspectos e impactos ambientales",
+    "categoria": "Gestión Ambiental",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 3, sección «Asesoría y Consultoría en Gestión Ambiental». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-038",
+    "nombre": "Revisiones socio-ambientales",
+    "categoria": "Gestión Ambiental",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 3, sección «Asesoría y Consultoría en Gestión Ambiental». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-039",
+    "nombre": "Revisiones ambientales iniciales (RAI)",
+    "categoria": "Gestión Ambiental",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 3, sección «Asesoría y Consultoría en Gestión Ambiental». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-040",
+    "nombre": "Plan de gestión de riesgo de desastres para empresas públicas y privadas (PGREEP)",
+    "categoria": "Gestión Ambiental",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 3, sección «Asesoría y Consultoría en Gestión Ambiental». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-041",
+    "nombre": "Realización de aforo de residuos sólidos",
+    "categoria": "Gestión Ambiental",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 3, sección «Asesoría y Consultoría en Gestión Ambiental». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-042",
+    "nombre": "Gestión integral de residuos",
+    "categoria": "Gestión Ambiental",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 3, sección «Asesoría y Consultoría en Gestión Ambiental». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-043",
+    "nombre": "Reducción de emisiones",
+    "categoria": "Gestión Ambiental",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 3, sección «Asesoría y Consultoría en Gestión Ambiental». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-044",
+    "nombre": "Estrategias de mitigación y adaptación al cambio climático",
+    "categoria": "Gestión Ambiental",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 3, sección «Asesoría y Consultoría en Gestión Ambiental». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-045",
+    "nombre": "Programas ambientales",
+    "categoria": "Gestión Ambiental",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 3, sección «Asesoría y Consultoría en Gestión Ambiental». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-046",
+    "nombre": "Revisión y actualización de requisitos legales ambientales",
+    "categoria": "Gestión Ambiental",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 3, sección «Asesoría y Consultoría en Gestión Ambiental». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-047",
+    "nombre": "Evaluación de proyectos constructivos ambientales",
+    "categoria": "Gestión Ambiental",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 3, sección «Asesoría y Consultoría en Gestión Ambiental». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-048",
+    "nombre": "Acompañamiento en la implementación de estrategias de sostenibilidad ambiental",
+    "categoria": "Gestión Ambiental",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 3, sección «Asesoría y Consultoría en Gestión Ambiental». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-049",
+    "nombre": "Medición de Grado de Madurez de Activos (GMA) con la metodología de autoevaluación SAM del IAM",
+    "categoria": "Gestión de Activos",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 4, sección «Diagnóstico, Consultoría, Capacitación y Auditorías en Sistemas de Gestión de Activos». Encabezado de la sección: orientación, acompañamiento y transferencia de conocimientos sobre la gestión de activos en el sector eléctrico colombiano para cumplir lo requerido en la Resolución CREG 015 de 2018 (metodología para la remuneración de la actividad de distribución de energía eléctrica en el SIN). Identifica las brechas del SGA en los niveles de inocente, consciente, en desarrollo, competente, óptimo y de excelencia. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-050",
+    "nombre": "Consultoría para diseñar, documentar y alinear el Plan Estratégico de Gestión de Activos (PEGA) con los objetivos estratégicos de las empresas",
+    "categoria": "Gestión de Activos",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 4, sección «Diagnóstico, Consultoría, Capacitación y Auditorías en Sistemas de Gestión de Activos». Encabezado de la sección: orientación, acompañamiento y transferencia de conocimientos sobre la gestión de activos en el sector eléctrico colombiano para cumplir lo requerido en la Resolución CREG 015 de 2018 (metodología para la remuneración de la actividad de distribución de energía eléctrica en el SIN). El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-051",
+    "nombre": "Consultorías para diseñar, realizar la gestión de activos con la ISO 55001 GESTIÓN DE ACTIVOS. SISTEMAS DE GESTIÓN. REQUISITOS",
+    "categoria": "Gestión de Activos",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 4, sección «Diagnóstico, Consultoría, Capacitación y Auditorías en Sistemas de Gestión de Activos». Encabezado de la sección: orientación, acompañamiento y transferencia de conocimientos sobre la gestión de activos en el sector eléctrico colombiano para cumplir lo requerido en la Resolución CREG 015 de 2018 (metodología para la remuneración de la actividad de distribución de energía eléctrica en el SIN). El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-052",
+    "nombre": "Formación en SGA",
+    "categoria": "Gestión de Activos",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 4, sección «Diagnóstico, Consultoría, Capacitación y Auditorías en Sistemas de Gestión de Activos». Encabezado de la sección: orientación, acompañamiento y transferencia de conocimientos sobre la gestión de activos en el sector eléctrico colombiano para cumplir lo requerido en la Resolución CREG 015 de 2018 (metodología para la remuneración de la actividad de distribución de energía eléctrica en el SIN). Incluye: Diplomado en SGA; Fundamentos en ISO 55001; Formación y calificación de auditores; Consulte sobre el Taller SGA para la alta dirección. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-053",
+    "nombre": "Autogeneración a pequeña escala y de generación distribuida",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-054",
+    "nombre": "Calidad del servicio en STR y SDL",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-055",
+    "nombre": "Diplomado en Gestión de Activos",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-056",
+    "nombre": "Diplomado en sostenibilidad",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-057",
+    "nombre": "Diplomado en Planeación Estratégica y Cuadro de Mando Integral",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-058",
+    "nombre": "Diplomado en Sistemas de Gestión Integral HSEQ en Calidad, Ambiental y SST",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-059",
+    "nombre": "Diplomado en Interventoría de Obras Eléctricas",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-060",
+    "nombre": "Diplomado en Formación y Calificación de Auditores Internos y/o líderes (HSEQ)",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-061",
+    "nombre": "Diplomado en Eficiencia Energética",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-062",
+    "nombre": "Capacitación en el plan estratégico de seguridad vial empresarial (PESVE)",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-063",
+    "nombre": "Indicadores de Gestión",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-064",
+    "nombre": "Mejoramiento Continuo",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-065",
+    "nombre": "Fundamentos, formación y calificación de auditores internos y/o líderes en las normas: ISO 9001, ISO 14001, ISO 17025, ISO 27001, ISO 45001, ISO 50001, ISO 55001",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-066",
+    "nombre": "Metodología para la Implementación del Modelo Integrado de Planeación y Gestión (MIPG) Decreto 1499 del 2017 y MECI",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-067",
+    "nombre": "RETIE - RETILAP",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-068",
+    "nombre": "Resolución CREG 015 del 2018: por la cual se establece la metodología para la remuneración de la distribución de energía eléctrica en el SIN",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-069",
+    "nombre": "Innovación",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-070",
+    "nombre": "Formación en Huella de Carbono y Cambio Climático",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-071",
+    "nombre": "Formación en Metodología para la Cuantificación de Riesgos Operativos para el Sector energético",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-072",
+    "nombre": "Formación en Poda de Arboles para el despeje de Líneas de Distribución de Energía Eléctrica",
+    "categoria": "Formación",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 5, sección «Diseño y Realización de Eventos de Formación». Encabezado de la sección: eventos de formación a la medida, a partir del estudio y análisis de los perfiles ocupacionales y la participación de las organizaciones en el desarrollo de las propuestas pedagógicas; diseño e implementación de diplomados y eventos de formación. Basado en los estándares de ANSI Z133 y ANSI A300. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-073",
+    "nombre": "Verificación de calidad del servicio en los sistemas de distribución local. Resolución CREG 101 032 de 2022",
+    "categoria": "Auditoría Regulatoria y Evaluación Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 7, sección «Auditoría Regulatoria y Evaluación Organizacional». Encabezado de la sección: evaluación de la adecuación, conveniencia y eficacia de los sistemas de gestión de las organizaciones, así como el cumplimiento de requisitos regulatorios para el Sector Eléctrico Colombiano. Verificaciones en el Sector eléctrico colombiano, Consejo Nacional de Operación del Sector Eléctrico (C.N.O.), XM S.A. E.S.P. Resolución CREG 101 032 de 2022: “Por la cual se establecen los criterios y condiciones para la realización de las verificaciones de la aplicación de la regulación de la calidad del servicio en los Sistemas de Distribución Local”. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-074",
+    "nombre": "Verificación de planes de inversión de los operadores de red. Resolución CREG 101 022 de 2022 y Resolución CREG 101 039 de 2024",
+    "categoria": "Auditoría Regulatoria y Evaluación Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 7, sección «Auditoría Regulatoria y Evaluación Organizacional». Encabezado de la sección: evaluación de la adecuación, conveniencia y eficacia de los sistemas de gestión de las organizaciones, así como el cumplimiento de requisitos regulatorios para el Sector Eléctrico Colombiano. Verificaciones en el Sector eléctrico colombiano, Consejo Nacional de Operación del Sector Eléctrico (C.N.O.), XM S.A. E.S.P. Resolución CREG 101 022 de 2022: “Por la cual se establecen las reglas para realizar la verificación de los planes de inversión de los Operadores de Red”. Resolución CREG 101 039 de 2024: “Por la cual se modifican las reglas para realizar la verificación de los planes de inversión”. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-075",
+    "nombre": "Auditorias regulatorias Resolución CREG 015 del 2018: por la cual se establece la metodología para la remuneración de la distribución de energía eléctrica en el SIN",
+    "categoria": "Auditoría Regulatoria y Evaluación Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 7, sección «Auditoría Regulatoria y Evaluación Organizacional». Encabezado de la sección: evaluación de la adecuación, conveniencia y eficacia de los sistemas de gestión de las organizaciones, así como el cumplimiento de requisitos regulatorios para el Sector Eléctrico Colombiano. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-076",
+    "nombre": "Auditorías a proyectos aprobados por la Unidad de Planeación Minero Energética (UPME)",
+    "categoria": "Auditoría Regulatoria y Evaluación Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 7, sección «Auditoría Regulatoria y Evaluación Organizacional». Encabezado de la sección: evaluación de la adecuación, conveniencia y eficacia de los sistemas de gestión de las organizaciones, así como el cumplimiento de requisitos regulatorios para el Sector Eléctrico Colombiano. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-077",
+    "nombre": "Servicios en relación con el cumplimiento contractual",
+    "categoria": "Auditoría Regulatoria y Evaluación Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 7, sección «Auditoría Regulatoria y Evaluación Organizacional». Encabezado de la sección: evaluación de la adecuación, conveniencia y eficacia de los sistemas de gestión de las organizaciones, así como el cumplimiento de requisitos regulatorios para el Sector Eléctrico Colombiano. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-078",
+    "nombre": "Diagnóstico, auditoría interna y pre auditoría de certificación en sistemas de gestión",
+    "categoria": "Auditoría Regulatoria y Evaluación Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 7, sección «Auditoría Regulatoria y Evaluación Organizacional». Encabezado de la sección: evaluación de la adecuación, conveniencia y eficacia de los sistemas de gestión de las organizaciones, así como el cumplimiento de requisitos regulatorios para el Sector Eléctrico Colombiano. Normas listadas: NTC-ISO 9001, NTC-ISO 14001, NTC-ISO 17025, NTC-ISO 27001, NTC-ISO 45001, NTC-ISO 50001, NTC-ISO 55001. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-079",
+    "nombre": "Auditorías de materiales con alcance en compras, inventarios y su instalación o montaje",
+    "categoria": "Auditoría Regulatoria y Evaluación Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 7, sección «Auditoría Regulatoria y Evaluación Organizacional». Encabezado de la sección: evaluación de la adecuación, conveniencia y eficacia de los sistemas de gestión de las organizaciones, así como el cumplimiento de requisitos regulatorios para el Sector Eléctrico Colombiano. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-080",
+    "nombre": "Auditorías de segunda parte a proveedores",
+    "categoria": "Auditoría Regulatoria y Evaluación Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 7, sección «Auditoría Regulatoria y Evaluación Organizacional». Encabezado de la sección: evaluación de la adecuación, conveniencia y eficacia de los sistemas de gestión de las organizaciones, así como el cumplimiento de requisitos regulatorios para el Sector Eléctrico Colombiano. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-081",
+    "nombre": "Evaluación de proveedores",
+    "categoria": "Auditoría Regulatoria y Evaluación Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 7, sección «Auditoría Regulatoria y Evaluación Organizacional». Encabezado de la sección: evaluación de la adecuación, conveniencia y eficacia de los sistemas de gestión de las organizaciones, así como el cumplimiento de requisitos regulatorios para el Sector Eléctrico Colombiano. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-082",
+    "nombre": "Evaluación a la Administración, Operación y Mantenimiento (AOM)",
+    "categoria": "Auditoría Regulatoria y Evaluación Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 7, sección «Auditoría Regulatoria y Evaluación Organizacional». Encabezado de la sección: evaluación de la adecuación, conveniencia y eficacia de los sistemas de gestión de las organizaciones, así como el cumplimiento de requisitos regulatorios para el Sector Eléctrico Colombiano. El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-083",
+    "nombre": "Evaluación al Acuerdo 1960 del 2025 que sustituye el acuerdo 1502 del 2021",
+    "categoria": "Auditoría Regulatoria y Evaluación Organizacional",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 7, sección «Auditoría Regulatoria y Evaluación Organizacional». Encabezado de la sección: evaluación de la adecuación, conveniencia y eficacia de los sistemas de gestión de las organizaciones, así como el cumplimiento de requisitos regulatorios para el Sector Eléctrico Colombiano. Texto del PDF: “Por el cual se aprueba la actualización de la Guía de Ciberseguridad y se modifican algunos plazos”. (C.N.O) El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-084",
+    "nombre": "Identificar peligros en procesos, equipos y actividades mediante guías y observaciones in situ",
+    "categoria": "Evaluación de Riesgos",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 8, sección «Nuevos servicios – Evaluación de riesgos». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-085",
+    "nombre": "Aplicar What-If para detectar desviaciones y escenarios de falla mediante preguntas hipotéticas",
+    "categoria": "Evaluación de Riesgos",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 8, sección «Nuevos servicios – Evaluación de riesgos». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-086",
+    "nombre": "Ejecutar HAZOP y AMEF para analizar modos de falla, efectos y priorizar riesgos",
+    "categoria": "Evaluación de Riesgos",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 8, sección «Nuevos servicios – Evaluación de riesgos». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-087",
+    "nombre": "Desarrollar PHA, LOPA e ISO 31000 para calcular riesgos, protecciones y mitigaciones",
+    "categoria": "Evaluación de Riesgos",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 8, sección «Nuevos servicios – Evaluación de riesgos». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-088",
+    "nombre": "Elaborar informes con matriz de riesgos, planes de acción y seguimiento de controles",
+    "categoria": "Evaluación de Riesgos",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 8, sección «Nuevos servicios – Evaluación de riesgos». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-089",
+    "nombre": "Supervisar ejecución técnica según RETIE/NTC 2050",
+    "categoria": "Interventoría",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 8, sección «Nuevos servicios – Interventoría». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-090",
+    "nombre": "Realizar inspecciones diarias in situ con correcciones",
+    "categoria": "Interventoría",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 8, sección «Nuevos servicios – Interventoría». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-091",
+    "nombre": "Gestionar contrato, cronogramas y pagos",
+    "categoria": "Interventoría",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 8, sección «Nuevos servicios – Interventoría». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-092",
+    "nombre": "Coordinar reuniones y resolver incidencias",
+    "categoria": "Interventoría",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 8, sección «Nuevos servicios – Interventoría». El PDF no indica precio, fechas, modalidades ni duración."
+  },
+  {
+    "id": "servicio-093",
+    "nombre": "Elaborar informes, matrices y certificaciones",
+    "categoria": "Interventoría",
+    "notas": "Fuente: Portafolio_actualizado_2026.pdf, p. 8, sección «Nuevos servicios – Interventoría». El PDF no indica precio, fechas, modalidades ni duración."
+  }
+]
