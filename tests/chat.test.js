@@ -12,10 +12,10 @@ async function iniciar(t, options = {}) {
   return `http://127.0.0.1:${server.address().port}`;
 }
 
-function preguntar(baseUrl, mensaje, historial) {
+function preguntar(baseUrl, mensaje, historial, consentimiento = true) {
   return fetch(`${baseUrl}/chat`, {
     method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ mensaje, ...(historial ? { historial } : {}) }),
+    body: JSON.stringify({ mensaje, consentimiento, ...(historial ? { historial } : {}) }),
   });
 }
 
@@ -109,6 +109,26 @@ test('Rechaza mensajes vacíos, tipos incorrectos y exceso de longitud antes de 
     assert.equal(response.status, 400);
     assert.equal(typeof (await response.json()).error, 'string');
   }
+  assert.equal(llamadas, 0);
+});
+
+test('No procesa mensajes si la persona no ha aceptado el tratamiento de datos', async (t) => {
+  let llamadas = 0;
+  const baseUrl = await iniciar(t, {
+    apiKey: 'clave-simulada',
+    fetchImpl: () => { llamadas++; throw new Error('No debe invocarse'); },
+  });
+
+  const noAceptado = await preguntar(baseUrl, '¿Cuánto cuesta Excel Avanzado?', undefined, false);
+  assert.equal(noAceptado.status, 403);
+  assert.match((await noAceptado.json()).error, /aceptar el tratamiento de datos personales/u);
+  const sinRespuesta = await fetch(`${baseUrl}/chat`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ mensaje: '¿Cuánto cuesta Excel Avanzado?' }),
+  });
+  assert.equal(sinRespuesta.status, 403);
+  assert.match((await sinRespuesta.json()).error, /aceptar el tratamiento de datos personales/u);
   assert.equal(llamadas, 0);
 });
 

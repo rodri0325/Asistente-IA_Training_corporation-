@@ -25,6 +25,9 @@ export function crearApp({
     if (!req.is('application/json')) {
       return res.status(415).json({ error: 'Envía la pregunta como JSON.' });
     }
+    if (req.body?.consentimiento !== true) {
+      return res.status(403).json({ error: 'Debes aceptar el tratamiento de datos personales para usar el asistente.' });
+    }
     const mensaje = req.body?.mensaje;
     if (!mensajeValido(mensaje)) {
       return res.status(400).json({ error: 'Escribe una pregunta de 1 a 1000 caracteres.' });

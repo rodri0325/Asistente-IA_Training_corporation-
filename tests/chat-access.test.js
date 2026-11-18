@@ -26,7 +26,7 @@ async function iniciar(t, options = {}) {
 function preguntar(base, headers = {}) {
   return fetch(`${base}/chat`, {
     method: 'POST', headers: { 'Content-Type': 'application/json', ...headers },
-    body: JSON.stringify({ mensaje: '¿Tienen cursos de Excel?' }),
+    body: JSON.stringify({ mensaje: '¿Tienen cursos de Excel?', consentimiento: true }),
   });
 }
 

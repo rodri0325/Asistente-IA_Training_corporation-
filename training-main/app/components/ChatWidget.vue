@@ -19,13 +19,14 @@ const input = useTemplateRef<HTMLInputElement>('input')
 const messageList = useTemplateRef<HTMLDivElement>('messageList')
 const isOpen = ref(false)
 const isWaiting = ref(false)
+const consent = ref<'pending' | 'accepted' | 'declined'>('pending')
 const question = ref('')
 const status = ref('')
 const messages = ref<Message[]>([
   {
     id: 0,
     author: 'Trainy',
-    text: '¡Hola! Soy Trainy, el asistente virtual de Training Corporation S.A.S. Puedo orientarle sobre nuestros cursos y servicios, como consultoría y auditoría. ¿Qué necesita conocer?',
+    text: 'Antes de empezar, ¿autoriza el tratamiento de los datos personales que comparta en este chat para atender sus consultas?',
     kind: 'assistant',
   },
 ])
@@ -84,6 +85,38 @@ function addMessage(author: Message['author'], text: string, kind: Message['kind
   })
 }
 
+function acceptConsent() {
+  if (consent.value !== 'pending') return
+  consent.value = 'accepted'
+  addMessage(
+    'Trainy',
+    '¡Hola! Soy Trainy, el asistente virtual de Training Corporation S.A.S. Puedo orientarle sobre nuestros cursos y servicios, como consultoría y auditoría. ¿Qué necesita conocer?',
+    'assistant',
+  )
+  nextTick(() => input.value?.focus())
+}
+
+function declineConsent() {
+  if (consent.value !== 'pending') return
+  consent.value = 'declined'
+  addMessage(
+    'Trainy',
+    'Entendido. No enviaré sus mensajes al asistente. Si desea conversar, puede iniciar una nueva conversación y elegir si autoriza el tratamiento de sus datos.',
+    'assistant',
+  )
+}
+
+function restartConversation() {
+  consent.value = 'pending'
+  messages.value = [{
+    id: 0,
+    author: 'Trainy',
+    text: 'Antes de empezar, ¿autoriza el tratamiento de los datos personales que comparta en este chat para atender sus consultas?',
+    kind: 'assistant',
+  }]
+  nextMessageId = 1
+}
+
 function historialParaAPI() {
   let caracteresDisponibles = 4000
   return messages.value
@@ -132,7 +165,7 @@ function chatEndpoint() {
 }
 
 async function submitQuestion() {
-  if (isWaiting.value) return
+  if (isWaiting.value || consent.value !== 'accepted') return
 
   const text = question.value.trim()
   if (!text || text.length > 1000) {
@@ -156,7 +189,7 @@ async function submitQuestion() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'omit',
-      body: JSON.stringify({ mensaje: text, historial: history }),
+      body: JSON.stringify({ mensaje: text, historial: history, consentimiento: true }),
       signal: request.signal,
     })
     const data: unknown = await response.json()
@@ -291,6 +324,19 @@ onBeforeUnmount(() => {
           </div>
         </div>
 
+        <div v-if="consent === 'pending'" class="chat-widget__consent">
+          <a href="/docs/Proteccion-datos.pdf" target="_blank" rel="noopener">
+            Consulte nuestra política de protección de datos
+          </a>
+          <div class="chat-widget__consent-actions">
+            <button type="button" @click="acceptConsent">Acepto</button>
+            <button type="button" @click="declineConsent">No acepto</button>
+          </div>
+        </div>
+        <div v-else-if="consent === 'declined'" class="chat-widget__consent">
+          <button type="button" @click="restartConversation">Iniciar una nueva conversación</button>
+        </div>
+
         <p class="chat-widget__status" role="status" aria-live="polite">{{ status }}</p>
         <form class="chat-widget__form" @submit.prevent="submitQuestion">
           <label for="chat-widget-input">Tu consulta</label>
@@ -306,11 +352,13 @@ onBeforeUnmount(() => {
               required
               autocomplete="off"
               aria-describedby="chat-widget-hint"
-              :readonly="isWaiting"
+              :disabled="consent !== 'accepted' || isWaiting"
             >
-            <button type="submit" :disabled="isWaiting">Enviar</button>
+            <button type="submit" :disabled="consent !== 'accepted' || isWaiting">Enviar</button>
           </div>
-          <small id="chat-widget-hint">Si consulta por una oferta específica, indique su nombre.</small>
+          <small id="chat-widget-hint">
+            {{ consent === 'accepted' ? 'Si consulta por una oferta específica, indique su nombre.' : 'Autorice el tratamiento de datos para habilitar el chat.' }}
+          </small>
         </form>
       </section>
     </Transition>
@@ -556,6 +604,41 @@ onBeforeUnmount(() => {
 .chat-widget__whatsapp:hover {
   background: #d7eddf;
   text-decoration: underline;
+}
+
+.chat-widget__consent {
+  display: grid;
+  gap: 10px;
+  flex-shrink: 0;
+  padding: 12px 16px;
+  border-top: 1px solid var(--color-linea);
+  background: var(--color-blanco);
+  font-size: 12px;
+}
+
+.chat-widget__consent > a {
+  color: var(--color-azul-hondo);
+  text-decoration: underline;
+}
+
+.chat-widget__consent-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.chat-widget__consent button {
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid var(--color-azul);
+  border-radius: var(--radius-control);
+  background: var(--color-azul);
+  color: var(--color-blanco);
+  font-weight: 700;
+}
+
+.chat-widget__consent button:last-child:not(:first-child) {
+  background: var(--color-blanco);
+  color: var(--color-azul-hondo);
 }
 
 .chat-widget__message--assistant {

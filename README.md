@@ -1,6 +1,6 @@
 # TRAINING Corporation
 
-Sitio web en Nuxt 4, Vue 3 y TypeScript. Incluye un chat aislado como componente Vue y un backend Node.js + Express que consulta los catálogos de cursos y servicios y Gemini. Ante una consulta general sobre la oferta, el asistente muestra primero las categorías y luego puede listar las ofertas de la categoría elegida y responder preguntas sobre ellas. El backend también recibe el webhook de WhatsApp.
+Sitio web en Nuxt 4, Vue 3 y TypeScript. Incluye un chat aislado como componente Vue y un backend Node.js + Express que consulta los catálogos de cursos y servicios y Gemini. Al iniciar cada conversación, el chat web solicita autorización para tratar los datos personales compartidos y no envía preguntas al backend hasta recibirla. Ante una consulta general sobre la oferta, el asistente muestra primero las categorías y luego puede listar las ofertas de la categoría elegida y responder preguntas sobre ellas. El backend también recibe el webhook de WhatsApp.
 
 ## Requisitos
 
